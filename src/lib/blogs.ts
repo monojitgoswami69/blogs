@@ -6,7 +6,7 @@ export const BLOGS_DATA: BlogPost[] = [
     title: 'AgentRouter AI Setup Guide',
     subtitle: 'Claude Code, OpenAI Codex & OpenCode Integration with Free Credits',
     description:
-      'Complete step-by-step guide to configure AgentRouter with $175 in initial credits, a $50 referral bonus, and $25 daily check-in rewards for Claude Opus 5, GPT-5.6 Sol, GLM-5.3, and DeepSeek V4.',
+      'Setup AgentRouter with $175 in free credits, daily login rewards, and integration for Claude Code, OpenAI Codex, and OpenCode.',
     publishedAt: '2026-08-29',
     updatedAt: '2026-08-29',
     readingTime: '5 min read',
