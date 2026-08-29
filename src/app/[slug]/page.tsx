@@ -123,7 +123,6 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <Navbar
         breadcrumbs={[
-          { label: 'Guides', href: '/' },
           { label: post.slug },
         ]}
       />

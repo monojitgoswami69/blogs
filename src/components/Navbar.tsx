@@ -17,9 +17,9 @@ export function Navbar({ breadcrumbs }: NavbarProps) {
           </Link>
           {breadcrumbs && breadcrumbs.length > 0 && (
             <div className="breadcrumbs">
-              <span className="breadcrumb-separator">/</span>
               {breadcrumbs.map((crumb, idx) => (
-                <span key={idx} className="breadcrumb-item">
+                <div key={idx} className="breadcrumb-segment">
+                  <span className="breadcrumb-separator">/</span>
                   {crumb.href ? (
                     <Link href={crumb.href} className="breadcrumb-link">
                       {crumb.label}
@@ -27,10 +27,7 @@ export function Navbar({ breadcrumbs }: NavbarProps) {
                   ) : (
                     <span className="breadcrumb-current">{crumb.label}</span>
                   )}
-                  {idx < breadcrumbs.length - 1 && (
-                    <span className="breadcrumb-separator">/</span>
-                  )}
-                </span>
+                </div>
               ))}
             </div>
           )}
