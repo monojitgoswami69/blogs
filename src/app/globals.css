@@ -179,68 +179,141 @@ h1, h2, h3, h4 {
   color: #111111;
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 h1 {
-  font-size: 1.95rem;
+  font-size: 2.1rem;
   margin-bottom: 8px;
 }
 
-h2 {
-  font-size: 1.35rem;
-  margin-top: 36px;
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-color);
+.blog-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.25;
 }
 
-h3 {
+.blog-subtitle {
   font-size: 1.15rem;
-  margin-top: 24px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+h2, .section-heading {
+  font-size: 1.4rem;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  scroll-margin-top: 80px;
+}
+
+h3, .subsection-heading {
+  font-size: 1.18rem;
+  margin-top: 26px;
   margin-bottom: 10px;
 }
 
-h4 {
-  font-size: 1rem;
+h4, .step-title {
+  font-size: 1.02rem;
   margin-top: 18px;
   margin-bottom: 8px;
+  color: var(--text-main);
+  font-weight: 600;
 }
 
-p {
+p, .section-paragraph {
   margin-bottom: 16px;
+  line-height: 1.7;
 }
 
+.section-lead {
+  font-size: 1.02rem;
+  color: var(--text-main);
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+
+.subsection-block {
+  margin-top: 28px;
+  padding-top: 8px;
+}
+
+.subsection-description {
+  margin-bottom: 14px;
+  line-height: 1.65;
+}
+
+/* ── Lists & Step Styling ── */
 ul, ol {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   padding-left: 24px;
 }
 
 li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.step-ordered-list {
+  list-style-type: decimal;
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+
+.step-unordered-list {
+  list-style-type: disc;
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+
+.step-list-item {
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+
+.step-list-item:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Inline Code & Links ── */
+code, .inline-code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.86rem;
+  background-color: var(--surface-subtle);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  color: #111111;
+  word-break: break-word;
+}
+
+.inline-link {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.inline-link:hover {
+  color: var(--link-hover);
 }
 
 /* ── Code & CodeBlocks ── */
-code {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.85rem;
-  background-color: var(--surface-subtle);
-  padding: 2px 5px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
-}
-
 .code-container {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
-  background-color: var(--surface-subtle);
+  background-color: #f7f7f7;
   overflow: hidden;
 }
 
 .code-header {
-  padding: 6px 14px;
-  background-color: #ededed;
+  padding: 7px 14px;
+  background-color: #ebebeb;
   border-bottom: 1px solid var(--border-color);
   font-size: 0.75rem;
   font-family: 'JetBrains Mono', monospace;
@@ -250,26 +323,45 @@ code {
   align-items: center;
 }
 
+.code-language {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
 .code-body {
   position: relative;
 }
 
 .code-body pre {
   padding: 14px 16px;
-  padding-right: 70px;
+  padding-right: 76px;
   margin: 0;
   overflow-x: auto;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.86rem;
+  line-height: 1.55;
   background: transparent;
   border: none;
+  scrollbar-width: thin;
+}
+
+.code-body pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.code-body pre::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: 3px;
 }
 
 .code-body pre code {
   padding: 0;
   background: transparent;
   border: none;
+  font-size: inherit;
 }
 
 .copy-btn {
@@ -308,34 +400,60 @@ code {
 /* ── Notices / Callouts ── */
 .notice-callout {
   padding: 14px 16px;
-  margin-bottom: 20px;
-  border-left: 4px solid var(--notice-border);
+  margin-bottom: 22px;
+  border: 1px solid var(--notice-border);
   background-color: var(--notice-bg);
   color: var(--notice-text);
   font-size: 0.9rem;
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.notice-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notice-icon {
+  display: block;
 }
 
 .notice-title {
   font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 0.92rem;
+}
+
+.notice-content {
+  line-height: 1.6;
+}
+
+.notice-content p {
+  margin-bottom: 0;
 }
 
 .notice-callout.notice-warning {
-  border-left-color: var(--warning-border);
+  border-color: var(--warning-border);
   background-color: var(--warning-bg);
   color: var(--warning-text);
 }
 
 .notice-callout.notice-tip {
-  border-left-color: var(--tip-border);
+  border-color: var(--tip-border);
   background-color: var(--tip-bg);
   color: var(--tip-text);
 }
 
 /* ── Collapsible (<details>) ── */
 .collapsible-box {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   background-color: var(--surface);
@@ -346,13 +464,14 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 14px;
+  padding: 11px 14px;
   background-color: var(--surface-subtle);
   cursor: pointer;
   font-weight: 500;
   font-size: 0.9rem;
   user-select: none;
   list-style: none;
+  transition: background-color 0.15s ease;
 }
 
 .collapsible-summary::-webkit-details-marker {
@@ -360,7 +479,7 @@ code {
 }
 
 .collapsible-summary:hover {
-  background-color: #ededed;
+  background-color: #ebebeb;
 }
 
 .collapsible-summary .chevron-icon {
@@ -374,14 +493,19 @@ details[open] > .collapsible-summary .chevron-icon {
 }
 
 .collapsible-content {
-  padding: 14px 16px;
+  padding: 16px 16px;
   border-top: 1px solid var(--border-color);
   font-size: 0.9rem;
   background-color: var(--surface);
 }
 
 .collapsible-text {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+
+.collapsible-text:last-child {
+  margin-bottom: 0;
 }
 
 .collapsible-list {
@@ -390,9 +514,15 @@ details[open] > .collapsible-summary .chevron-icon {
   list-style-type: disc;
 }
 
+.collapsible-ordered-list {
+  padding-left: 20px;
+  margin-bottom: 0;
+  list-style-type: decimal;
+}
+
 .collapsible-list-item {
   margin-bottom: 8px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .collapsible-list-item:last-child {
@@ -401,7 +531,7 @@ details[open] > .collapsible-summary .chevron-icon {
 
 /* ── Top-Level Client Tabs ── */
 .client-tabs-wrapper {
-  margin-top: 16px;
+  margin-top: 18px;
   margin-bottom: 28px;
 }
 
@@ -440,18 +570,19 @@ details[open] > .collapsible-summary .chevron-icon {
   font-size: 0.95rem;
   color: var(--text-main);
   margin-bottom: 14px;
+  line-height: 1.65;
 }
 
 /* ── Platform Tabs ── */
 .platform-container {
-  margin-top: 12px;
+  margin-top: 14px;
   margin-bottom: 24px;
 }
 
 .platform-tab-list {
   display: flex;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .platform-tab-btn {
@@ -479,7 +610,7 @@ details[open] > .collapsible-summary .chevron-icon {
 
 .step-block {
   margin-bottom: 24px;
-  padding-bottom: 16px;
+  padding-bottom: 18px;
   border-bottom: 1px dashed var(--border-color);
 }
 
@@ -489,15 +620,11 @@ details[open] > .collapsible-summary .chevron-icon {
   padding-bottom: 0;
 }
 
-.step-title {
-  font-size: 1.05rem;
-  margin-bottom: 6px;
-}
-
 .step-description {
   color: var(--text-main);
   margin-bottom: 10px;
   font-size: 0.92rem;
+  line-height: 1.65;
 }
 
 .step-note {
@@ -509,35 +636,54 @@ details[open] > .collapsible-summary .chevron-icon {
 
 /* ── Blog Detail Header & Meta ── */
 .blog-header {
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .blog-meta-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 8px 12px;
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin-top: 12px;
-  margin-bottom: 16px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-label {
+  color: var(--text-dim);
+}
+
+.meta-sep {
+  color: var(--border-strong);
+  user-select: none;
 }
 
 .blog-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 10px;
 }
 
 .tag-badge {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: 4px;
   background-color: var(--surface-subtle);
   border: 1px solid var(--border-color);
   font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 /* ── Index Page Styles ── */

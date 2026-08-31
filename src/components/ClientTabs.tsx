@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ClientGuide } from '../types/blog';
 import { PlatformTabs } from './PlatformTabs';
 import { Collapsible } from './Collapsible';
+import { renderFormattedText } from '../lib/format';
 
 interface ClientTabsProps {
   guides: ClientGuide[];
@@ -37,7 +38,7 @@ export function ClientTabs({ guides }: ClientTabsProps) {
 
       <div className="client-guide-panel" role="tabpanel">
         {activeGuide.lead && (
-          <p className="client-lead-text">{activeGuide.lead}</p>
+          <p className="client-lead-text">{renderFormattedText(activeGuide.lead)}</p>
         )}
 
         {activeGuide.collapsiblePrerequisites && (
@@ -46,6 +47,7 @@ export function ClientTabs({ guides }: ClientTabsProps) {
             content={activeGuide.collapsiblePrerequisites.content}
             code={activeGuide.collapsiblePrerequisites.code}
             list={activeGuide.collapsiblePrerequisites.list}
+            orderedList={activeGuide.collapsiblePrerequisites.orderedList}
           />
         )}
 

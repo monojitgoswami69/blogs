@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { PlatformContent } from '../types/blog';
 import { CodeBlock } from './CodeBlock';
 import { Collapsible } from './Collapsible';
+import { renderFormattedText } from '../lib/format';
 
 interface PlatformTabsProps {
   tabs: PlatformContent[];
@@ -38,9 +39,11 @@ export function PlatformTabs({ tabs }: PlatformTabsProps) {
       <div className="platform-content-panel" role="tabpanel">
         {activeTab.steps.map((step, idx) => (
           <div key={idx} className="step-block">
-            {step.title && <h4 className="step-title">{step.title}</h4>}
+            {step.title && (
+              <h4 className="step-title">{renderFormattedText(step.title)}</h4>
+            )}
             {step.description && (
-              <p className="step-description">{step.description}</p>
+              <p className="step-description">{renderFormattedText(step.description)}</p>
             )}
 
             {step.command && <CodeBlock code={step.command} />}
@@ -53,13 +56,17 @@ export function PlatformTabs({ tabs }: PlatformTabsProps) {
               />
             )}
 
-            {step.note && <p className="step-note">{step.note}</p>}
+            {step.note && (
+              <p className="step-note">{renderFormattedText(step.note)}</p>
+            )}
 
             {step.collapsible && (
               <Collapsible
                 title={step.collapsible.title}
                 content={step.collapsible.content}
                 code={step.collapsible.code}
+                list={step.collapsible.list}
+                orderedList={step.collapsible.orderedList}
               />
             )}
           </div>

@@ -1,54 +1,14 @@
 import React from 'react';
 import { CodeBlock } from './CodeBlock';
+import { renderFormattedText } from '../lib/format';
 
 interface CollapsibleProps {
   title: string;
   content?: string;
   code?: string;
   list?: string[];
+  orderedList?: string[];
   defaultOpen?: boolean;
-}
-
-export function renderFormattedText(text: string): React.ReactNode {
-  const pattern = /(\[[^\]]+\]\([^)]+\)|`[^`]+`|https?:\/\/[^\s)"]+)/g;
-  const parts = text.split(pattern);
-
-  return parts.map((part, index) => {
-    if (!part) return null;
-
-    const mdLinkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-    if (mdLinkMatch) {
-      return (
-        <a
-          key={index}
-          href={mdLinkMatch[2]}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {mdLinkMatch[1]}
-        </a>
-      );
-    }
-
-    if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
-      return <code key={index}>{part.slice(1, -1)}</code>;
-    }
-
-    if (part.startsWith('http://') || part.startsWith('https://')) {
-      return (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {part}
-        </a>
-      );
-    }
-
-    return part;
-  });
 }
 
 export function Collapsible({
@@ -56,8 +16,11 @@ export function Collapsible({
   content,
   code,
   list,
+  orderedList,
   defaultOpen = false,
 }: CollapsibleProps) {
+  const contentParagraphs = content ? content.split(/\n\n|\n/).filter(Boolean) : [];
+
   return (
     <details className="collapsible-box" open={defaultOpen}>
       <summary className="collapsible-summary">
@@ -72,12 +35,17 @@ export function Collapsible({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </summary>
       <div className="collapsible-content">
-        {content && <p className="collapsible-text">{renderFormattedText(content)}</p>}
+        {contentParagraphs.map((para, pIdx) => (
+          <p key={pIdx} className="collapsible-text">
+            {renderFormattedText(para)}
+          </p>
+        ))}
         {code && <CodeBlock code={code} />}
         {list && list.length > 0 && (
           <ul className="collapsible-list">
@@ -87,6 +55,15 @@ export function Collapsible({
               </li>
             ))}
           </ul>
+        )}
+        {orderedList && orderedList.length > 0 && (
+          <ol className="collapsible-ordered-list">
+            {orderedList.map((item, i) => (
+              <li key={i} className="collapsible-list-item">
+                {renderFormattedText(item)}
+              </li>
+            ))}
+          </ol>
         )}
       </div>
     </details>

@@ -51,12 +51,11 @@ Refer to [.agents/rules/writing-style.md](file:///Users/monojitgoswami/projects/
 
 ## 4. How to Add a New Blog Post
 
-1. Open [src/lib/blogs.ts](file:///Users/monojitgoswami/projects/misc/blogs/src/lib/blogs.ts).
-2. Append a new object to `BLOGS_DATA` with a unique, URL-safe `slug` (e.g. `slug: "my-new-guide"`).
-3. Populate `title`, `description`, `publishedAt`, `tags`, `readingTime`, and content sections.
-4. Run `npm run lint` and `npm run build` to verify static route generation.
+1. Create a dedicated post file under `src/data/blogs/<slug>.ts` (e.g. `src/data/blogs/my-new-guide.ts`) conforming to `BlogPost`.
+2. Register the post in [src/lib/blogs.ts](file:///Users/monojitgoswami/projects/blogs/src/lib/blogs.ts) by importing it and adding it to `BLOGS_DATA`.
+3. Run `npm run lint` and `npm run build` to verify static route generation.
 
-Refer to [.agents/rules/adding-blogs.md](file:///Users/monojitgoswami/projects/misc/blogs/.agents/rules/adding-blogs.md) for complete details.
+Refer to [.agents/rules/adding-blogs.md](file:///Users/monojitgoswami/projects/blogs/.agents/rules/adding-blogs.md) for complete details.
 
 ---
 

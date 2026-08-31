@@ -44,15 +44,42 @@ export interface BlogPost {
 
 ## 3. Step-by-Step: Adding a New Blog Post
 
-1. **Open `src/lib/blogs.ts`**:
-   Add a new blog post entry to the `BLOGS_DATA` array.
-2. **Define Metadata**:
-   Ensure `slug` is unique, URL-safe (lowercase, hyphen-separated), and matches the intended trailing path (e.g. `blogs.mgbuilds.in/docker-cheat-sheet`).
-3. **Structure Sections**:
-   Use structured sections or markdown body blocks. Use components like `CodeBlock`, `PlatformTabs`, `Collapsible`, and `Notice` for clean, modular rendering.
-4. **Verify Route & Build**:
+1. **Create a Dedicated Post File**:
+   Create a new file under `src/data/blogs/<slug>.ts` (e.g. `src/data/blogs/my-guide.ts`) exporting a typed `BlogPost` object:
+   ```typescript
+   import { BlogPost } from '../../types/blog';
+
+   export const myGuideBlog: BlogPost = {
+     slug: 'my-guide',
+     title: 'My Technical Guide',
+     description: 'Short summary for card and SEO description.',
+     publishedAt: '2026-08-31',
+     readingTime: '4 min read',
+     tags: ['CLI', 'Guide'],
+     author: {
+       name: 'Monojit Goswami',
+       url: 'https://mgbuilds.in',
+     },
+     sections: [
+       // structured sections
+     ],
+   };
+   ```
+2. **Register in `src/lib/blogs.ts`**:
+   Import your post object and add it to `BLOGS_DATA`:
+   ```typescript
+   import { myGuideBlog } from '../data/blogs/my-guide';
+
+   export const BLOGS_DATA: BlogPost[] = [
+     agentrouterBlog,
+     xyzdomainBlog,
+     myGuideBlog,
+   ];
+   ```
+3. **Verify Route & Build**:
    ```bash
    npm run lint
    npm run build
    ```
    Ensure static generation compiles the new path `/[slug]` without errors.
+

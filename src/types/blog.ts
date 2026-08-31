@@ -10,9 +10,10 @@ export interface StepItem {
   note?: string;
   collapsible?: {
     title: string;
-    content: string;
+    content?: string;
     code?: string;
     list?: string[];
+    orderedList?: string[];
   };
 }
 
@@ -31,6 +32,7 @@ export interface ClientGuide {
     content?: string;
     code?: string;
     list?: string[];
+    orderedList?: string[];
   };
   platforms: PlatformContent[];
 }
@@ -54,9 +56,10 @@ export interface BlogSection {
   };
   collapsible?: {
     title: string;
-    content: string;
+    content?: string;
     code?: string;
     list?: string[];
+    orderedList?: string[];
   };
   platformTabs?: PlatformContent[];
   clientGuides?: ClientGuide[];
@@ -80,9 +83,10 @@ export interface BlogSection {
     command?: string;
     collapsible?: {
       title: string;
-      content: string;
+      content?: string;
       code?: string;
       list?: string[];
+      orderedList?: string[];
     };
     platformTabs?: PlatformContent[];
   }[];
