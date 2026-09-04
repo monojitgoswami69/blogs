@@ -1,10 +1,12 @@
 import { BlogPost } from '../types/blog';
 import { agentrouterBlog } from '../data/blogs/agentrouter';
 import { xyzdomainBlog } from '../data/blogs/xyzdomain';
+import { modelscopeBlog } from '../data/blogs/modelscope';
 
 export const BLOGS_DATA: BlogPost[] = [
   agentrouterBlog,
   xyzdomainBlog,
+  modelscopeBlog,
 ];
 
 export function getAllBlogs(): BlogPost[] {
