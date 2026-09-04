@@ -2,14 +2,14 @@ import { BlogPost } from '../../types/blog';
 
 export const modelscopeBlog: BlogPost = {
   slug: 'modelscope',
-  title: 'ModelScope AI Inference Setup Guide',
-  subtitle: 'DeepSeek-V4 Pro, GLM-5.2 & Qwen Integration via the Magicubes Economy (300 Daily Cubes = 10-15M Tokens)',
+  title: 'ModelScope Inference Setup for Coding Agents',
+  subtitle: 'Run DeepSeek-V4 Pro, GLM-5.2 & Qwen in OpenCode, Codex & Claude Code via Magicubes',
   description:
-    'Complete step-by-step technical guide to ModelScope AI inference on modelscope.ai, powered by the Magicubes compute economy. Learn how to secure guaranteed 300 cubes daily (10-15M tokens) and configure GLM-5.2, DeepSeek-V4 Pro, and Qwen in OpenCode, Claude Code, Cursor, and Python.',
+    'Complete technical setup guide for running terminal coding agents (OpenCode, OpenAI Codex CLI, and Claude Code) on ModelScope using OpenAI and Anthropic compatible gateways, powered by the Magicubes credit economy.',
   publishedAt: '2026-09-04',
   updatedAt: '2026-09-04',
   readingTime: '7 min read',
-  tags: ['AI', 'ModelScope', 'DeepSeek', 'GLM-5.2', 'OpenCode', 'Claude Code', 'Cursor', 'Guide'],
+  tags: ['AI', 'ModelScope', 'DeepSeek', 'GLM-5.2', 'OpenCode', 'Claude Code', 'Codex', 'Coding Agents'],
   author: {
     name: 'Monojit Goswami',
     url: 'https://mgbuilds.in',
@@ -22,18 +22,12 @@ export const modelscopeBlog: BlogPost = {
       orderedList: [
         '**Sign Up via Direct Referral Link**: Register directly via the [ModelScope Sign-Up Link](https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register). This direct link automatically applies the referral invite—granting you an immediate **50 Magicubes** welcome bonus directly upon account creation with no separate code entry step needed.',
         '**Open Access Token Dashboard**: After logging in, navigate to [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken) or click on your profile avatar in the header and select "Access Token".',
-        '**Generate New Token**: Click "Create New Token". Assign an identifier (e.g., `developer-cli-agent`) and confirm. ModelScope will display your private API token.',
+        '**Generate New Token**: Click "Create New Token". Assign an identifier (e.g., `developer-cli-agent`) and confirm. ModelScope will display your private API token (prefixed with `ms-`).',
         '**Secure Key Storage**: Copy and store your token in an environment variable (`MODELSCOPE_API_TOKEN`) or your password manager. Never commit it to public version control.',
       ],
       actionButton: {
         text: 'Sign Up on ModelScope (+50 Free Magicubes) →',
         url: 'https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register',
-      },
-      notice: {
-        type: 'info',
-        title: 'Gateway Architecture',
-        content:
-          'Account management, token generation, and Magicube dashboards are located at [https://modelscope.ai](https://modelscope.ai). The OpenAI-compatible API endpoint for chat completions is hosted at `https://api-inference.modelscope.cn/v1`.',
       },
     },
     {
@@ -74,7 +68,7 @@ export const modelscopeBlog: BlogPost = {
             '**Direct Sign-up (+50 Magicubes)**: Registering through the direct [ModelScope Invite Link](https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register) credits an immediate **+50 Magicubes** welcome bonus to your account without needing an extra manual referral code step.',
             '**Invite Friends (+20 Magicubes / user)**: Receive **+20 Magicubes** whenever a colleague signs up with your personal referral link or code via [Invite Friends](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true).',
             '**Monthly Referral Limit**: Capped at **up to 50 users per month**, allowing you to earn up to **+1,000 Magicubes monthly** exclusively through referrals.',
-            '**Direct Fuel for Coding Agents**: Every Magicube earned through referrals directly finances your coding agent sessions, ensuring your OpenCode, Cursor, and Claude Code instances never run dry.',
+            '**Direct Fuel for Coding Agents**: Every Magicube earned through referrals directly finances your coding agent sessions, ensuring your OpenCode, Codex, and Claude Code instances never run dry.',
           ],
         },
         {
@@ -160,7 +154,7 @@ export const modelscopeBlog: BlogPost = {
     {
       id: 'quick-verification',
       title: '4. Connectivity Verification via cURL & Python',
-      lead: 'Test your ModelScope token and gateway connectivity with a simple REST request before configuring IDE extensions.',
+      lead: 'Test your ModelScope token and gateway connectivity with a simple REST request before configuring terminal agents.',
       platformTabs: [
         {
           id: 'curl-bash',
@@ -169,16 +163,16 @@ export const modelscopeBlog: BlogPost = {
             {
               title: 'Step 1: Export Environment Variable',
               description: 'Export your ModelScope access token in your terminal:',
-              command: 'export MODELSCOPE_API_TOKEN="YOUR_MODELSCOPE_TOKEN"',
+              command: 'export MODELSCOPE_API_TOKEN="ms-YOUR_MODELSCOPE_TOKEN"',
             },
             {
               title: 'Step 2: Send Chat Completion Request',
               description: 'Call the OpenAI-compatible endpoint requesting DeepSeek-V4 Pro:',
-              command: `curl -X POST "https://api-inference.modelscope.cn/v1/chat/completions" \\
+              command: `curl -X POST "https://api-inference.modelscope.ai/v1/chat/completions" \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer $MODELSCOPE_API_TOKEN" \\
   -d '{
-    "model": "deepseek-ai/DeepSeek-V4-Pro",
+    "model": "deepseek-ai/DeepSeek-V4-Pro-0813",
     "messages": [
       {"role": "system", "content": "You are a concise software engineering assistant."},
       {"role": "user", "content": "Write a TypeScript function to debounce an async callback."}
@@ -195,7 +189,7 @@ export const modelscopeBlog: BlogPost = {
             {
               title: 'Step 1: Set Session Environment Variable',
               description: 'Assign your token in PowerShell:',
-              command: '$env:MODELSCOPE_API_TOKEN = "YOUR_MODELSCOPE_TOKEN"',
+              command: '$env:MODELSCOPE_API_TOKEN = "ms-YOUR_MODELSCOPE_TOKEN"',
             },
             {
               title: 'Step 2: Send REST Request',
@@ -206,56 +200,77 @@ export const modelscopeBlog: BlogPost = {
 }
 
 $body = @{
-  model = "zai-org/GLM-5.2"
+  model = "deepseek-ai/DeepSeek-V4-Pro-0813"
   messages = @(
-    @{ role = "user"; content = "Explain the IndexShare architecture in GLM-5.2 in two sentences." }
+    @{ role = "user"; content = "Write a TypeScript function to debounce an async callback." }
   )
 } | ConvertTo-Json
 
-Invoke-RestMethod -Uri "https://api-inference.modelscope.cn/v1/chat/completions" -Method Post -Headers $headers -Body $body`,
+Invoke-RestMethod -Uri "https://api-inference.modelscope.ai/v1/chat/completions" -Method Post -Headers $headers -Body $body`,
             },
           ],
         },
       ],
       collapsible: {
-        title: 'Python OpenAI SDK Verification Example',
+        title: 'Python Verification (OpenAI & Anthropic SDKs)',
         content:
-          'Because ModelScope implements standard OpenAI wire compatibility, the official openai Python library works out of the box:',
-        code: `from openai import OpenAI
+          'ModelScope supports both the official OpenAI and Anthropic Python SDKs out of the box:',
+        code: `# --- 1. OpenAI SDK (Streaming Reasoning & Final Answer) ---
+from openai import OpenAI
 import os
 
 client = OpenAI(
-    base_url="https://api-inference.modelscope.cn/v1/",
-    api_key=os.environ.get("MODELSCOPE_API_TOKEN", "YOUR_TOKEN_HERE"),
+    base_url="https://api-inference.modelscope.ai/v1",
+    api_key=os.environ.get("MODELSCOPE_API_TOKEN", "ms-YOUR_TOKEN"),
 )
 
 response = client.chat.completions.create(
-    model="deepseek-ai/DeepSeek-V4-Pro",
-    messages=[
-        {"role": "system", "content": "You are a senior system architect."},
-        {"role": "user", "content": "Summarize the key advantages of MoE architectures for code generation."},
-    ],
+    model="deepseek-ai/DeepSeek-V4-Pro-0813",
+    messages=[{"role": "user", "content": "Write a TypeScript debounce function."}],
     stream=True,
 )
 
+done_reasoning = False
 for chunk in response:
-    delta = chunk.choices[0].delta
-    if hasattr(delta, "reasoning_content") and delta.reasoning_content:
-        print(delta.reasoning_content, end="", flush=True)
-    elif delta.content:
-        print(delta.content, end="", flush=True)
+    if chunk.choices:
+        reasoning_chunk = getattr(chunk.choices[0].delta, "reasoning_content", "") or ""
+        answer_chunk = getattr(chunk.choices[0].delta, "content", "") or ""
+        if reasoning_chunk:
+            print(reasoning_chunk, end="", flush=True)
+        elif answer_chunk:
+            if not done_reasoning and reasoning_chunk == "":
+                print("\\n\\n=== Final Answer ===\\n")
+                done_reasoning = True
+            print(answer_chunk, end="", flush=True)
+print()
+
+# --- 2. Anthropic SDK (Native Messages API Streaming) ---
+import anthropic
+
+anthropic_client = anthropic.Anthropic(
+    base_url="https://api-inference.modelscope.ai",
+    api_key=os.environ.get("MODELSCOPE_API_TOKEN", "ms-YOUR_TOKEN"),
+)
+
+with anthropic_client.messages.stream(
+    model="deepseek-ai/DeepSeek-V4-Pro-0813",
+    messages=[{"role": "user", "content": "Write a TypeScript debounce function."}],
+    max_tokens=1024,
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)
 print()`,
       },
     },
     {
       id: 'client-configuration',
       title: '5. AI Coding Client Integration',
-      lead: 'Connect ModelScope directly to your terminal coding agents and editor plugins. Select your preferred client below:',
+      lead: 'Connect ModelScope directly to your terminal coding agents. Select your preferred agent below:',
       clientGuides: [
         {
           id: 'opencode',
           title: 'OpenCode CLI',
-          lead: 'Route OpenCode automated refactoring sessions through ModelScope models.',
+          lead: 'Route OpenCode automated refactoring sessions through ModelScope models via its OpenAI-compatible endpoint.',
           collapsiblePrerequisites: {
             title: 'Prerequisites: OpenCode CLI Installation',
             content: 'Ensure OpenCode is installed on your system:',
@@ -274,8 +289,8 @@ print()`,
                   title: 'Step 1: Configure Shell Profile',
                   description:
                     'Add the ModelScope endpoint and token to your shell configuration (`~/.zshrc` or `~/.bashrc`):',
-                  command: `echo 'export OPENAI_BASE_URL="https://api-inference.modelscope.cn/v1"' >> ~/.zshrc
-echo 'export OPENAI_API_KEY="YOUR_MODELSCOPE_TOKEN"' >> ~/.zshrc
+                  command: `echo 'export OPENAI_BASE_URL="https://api-inference.modelscope.ai/v1"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="ms-YOUR_MODELSCOPE_TOKEN"' >> ~/.zshrc
 source ~/.zshrc`,
                 },
                 {
@@ -287,13 +302,13 @@ source ~/.zshrc`,
                     language: 'json',
                     content: JSON.stringify(
                       {
-                        model: 'deepseek-ai/DeepSeek-V4-Pro',
+                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
                         providers: {
                           modelscope: {
-                            baseURL: 'https://api-inference.modelscope.cn/v1',
+                            baseURL: 'https://api-inference.modelscope.ai/v1',
                             apiKey: '${OPENAI_API_KEY}',
                             models: [
-                              'deepseek-ai/DeepSeek-V4-Pro',
+                              'deepseek-ai/DeepSeek-V4-Pro-0813',
                               'zai-org/GLM-5.2',
                               'Qwen/Qwen2.5-Coder-32B-Instruct',
                             ],
@@ -309,7 +324,7 @@ source ~/.zshrc`,
                 {
                   title: 'Step 3: Launch OpenCode Session',
                   description: 'Start an agent session specifying DeepSeek-V4 Pro:',
-                  command: 'opencode --model deepseek-ai/DeepSeek-V4-Pro',
+                  command: 'opencode --model deepseek-ai/DeepSeek-V4-Pro-0813',
                 },
               ],
             },
@@ -320,8 +335,8 @@ source ~/.zshrc`,
                 {
                   title: 'Step 1: Set Persistent Environment Variables',
                   description: 'Execute in PowerShell as user:',
-                  command: `[System.Environment]::SetEnvironmentVariable('OPENAI_BASE_URL', 'https://api-inference.modelscope.cn/v1', 'User')
-[System.Environment]::SetEnvironmentVariable('OPENAI_API_KEY', 'YOUR_MODELSCOPE_TOKEN', 'User')`,
+                  command: `[System.Environment]::SetEnvironmentVariable('OPENAI_BASE_URL', 'https://api-inference.modelscope.ai/v1', 'User')
+[System.Environment]::SetEnvironmentVariable('OPENAI_API_KEY', 'ms-YOUR_MODELSCOPE_TOKEN', 'User')`,
                 },
                 {
                   title: 'Step 2: Configure OpenCode Settings File',
@@ -331,13 +346,13 @@ source ~/.zshrc`,
                     language: 'json',
                     content: JSON.stringify(
                       {
-                        model: 'zai-org/GLM-5.2',
+                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
                         providers: {
                           modelscope: {
-                            baseURL: 'https://api-inference.modelscope.cn/v1',
+                            baseURL: 'https://api-inference.modelscope.ai/v1',
                             apiKey: '${OPENAI_API_KEY}',
                             models: [
-                              'deepseek-ai/DeepSeek-V4-Pro',
+                              'deepseek-ai/DeepSeek-V4-Pro-0813',
                               'zai-org/GLM-5.2',
                               'Qwen/Qwen2.5-Coder-32B-Instruct',
                             ],
@@ -353,7 +368,7 @@ source ~/.zshrc`,
                 {
                   title: 'Step 3: Launch OpenCode Session',
                   description: 'Open a fresh PowerShell window and start OpenCode:',
-                  command: 'opencode --model zai-org/GLM-5.2',
+                  command: 'opencode --model deepseek-ai/DeepSeek-V4-Pro-0813',
                 },
               ],
             },
@@ -385,7 +400,7 @@ source ~/.zshrc`,
                     language: 'json',
                     content: JSON.stringify(
                       {
-                        OPENAI_API_KEY: 'YOUR_MODELSCOPE_TOKEN',
+                        OPENAI_API_KEY: 'ms-YOUR_MODELSCOPE_TOKEN',
                       },
                       null,
                       2
@@ -400,8 +415,8 @@ source ~/.zshrc`,
                     language: 'json',
                     content: JSON.stringify(
                       {
-                        baseURL: 'https://api-inference.modelscope.cn/v1',
-                        model: 'deepseek-ai/DeepSeek-V4-Pro',
+                        baseURL: 'https://api-inference.modelscope.ai/v1',
+                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
                         temperature: 0.2,
                       },
                       null,
@@ -433,8 +448,8 @@ source ~/.zshrc`,
                     language: 'json',
                     content: JSON.stringify(
                       {
-                        baseURL: 'https://api-inference.modelscope.cn/v1',
-                        model: 'Qwen/Qwen2.5-Coder-32B-Instruct',
+                        baseURL: 'https://api-inference.modelscope.ai/v1',
+                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
                         temperature: 0.2,
                       },
                       null,
@@ -452,78 +467,16 @@ source ~/.zshrc`,
           ],
         },
         {
-          id: 'cursor-cline',
-          title: 'Cursor & VS Code (Cline / Roo Code)',
-          lead: 'Configure editor extensions like Cursor AI, Cline, or Roo Code to leverage ModelScope models for inline code generation and repository-wide refactoring.',
-          platforms: [
-            {
-              id: 'cursor-ide',
-              label: 'Cursor IDE',
-              steps: [
-                {
-                  title: 'Step 1: Open Models Settings',
-                  description:
-                    'In Cursor, open Settings (`Cmd + ,` or `Ctrl + ,`), navigate to **Features > Models**.',
-                },
-                {
-                  title: 'Step 2: Configure OpenAI API Key & Base URL',
-                  description:
-                    'Under the OpenAI API Key section, enter your ModelScope Access Token. Click **Override OpenAI Base URL** and enter: `https://api-inference.modelscope.cn/v1`.',
-                },
-                {
-                  title: 'Step 3: Add Custom Model Identifiers',
-                  description:
-                    'Turn off default OpenAI models and click **+ Add model**. Add the following ModelScope identifiers:',
-                  command: 'deepseek-ai/DeepSeek-V4-Pro',
-                  note: 'Also add `zai-org/GLM-5.2` and `Qwen/Qwen2.5-Coder-32B-Instruct` as selectable models.',
-                },
-              ],
-            },
-            {
-              id: 'cline-vscode',
-              label: 'Cline / Roo Code (VS Code)',
-              steps: [
-                {
-                  title: 'Step 1: Open Provider Selection',
-                  description:
-                    'In VS Code, open the Cline or Roo Code sidebar panel and click the gear icon to open settings.',
-                },
-                {
-                  title: 'Step 2: Select OpenAI-Compatible Provider',
-                  description:
-                    'Change API Provider to **OpenAI Compatible**.',
-                },
-                {
-                  title: 'Step 3: Populate Connection Details',
-                  description: 'Fill in the connection parameters:',
-                  code: {
-                    filename: 'Cline Provider Settings',
-                    language: 'text',
-                    content: `Base URL: https://api-inference.modelscope.cn/v1
-API Key:  <Your ModelScope Access Token>
-Model ID: deepseek-ai/DeepSeek-V4-Pro`,
-                  },
-                },
-                {
-                  title: 'Step 4: Verify and Save',
-                  description:
-                    'Click Done / Save. Test with a quick prompt like "Audit this codebase for missing error handlers".',
-                },
-              ],
-            },
-          ],
-        },
-        {
           id: 'claude-code',
-          title: 'Claude Code (Proxy Gateway)',
-          lead: 'Run @anthropic-ai/claude-code using a lightweight OpenAI-to-Anthropic proxy gateway directing requests to ModelScope.',
+          title: 'Claude Code',
+          lead: 'Connect @anthropic-ai/claude-code directly to ModelScope using its native Anthropic Messages API gateway—no proxy or translation middleware required.',
           collapsiblePrerequisites: {
-            title: 'Proxy Translation Requirement',
-            content:
-              'Claude Code uses the Anthropic Messages API format (`/v1/messages`). To connect ModelScope to Claude Code, run a lightweight proxy (such as LiteLLM) that receives Anthropic requests and translates them to OpenAI-compatible `/chat/completions`.',
+            title: 'Prerequisites: Claude Code CLI Installation',
+            content: 'Verify Claude Code is installed globally on your system:',
+            code: 'claude --version',
             list: [
-              'Install litellm: `pip install litellm`',
-              'Proxy command: `litellm --model openai/deepseek-ai/DeepSeek-V4-Pro --api_base https://api-inference.modelscope.cn/v1`',
+              'Install globally via npm: `npm install -g @anthropic-ai/claude-code`',
+              'Node.js 18+ runtime is required',
             ],
           },
           platforms: [
@@ -532,19 +485,18 @@ Model ID: deepseek-ai/DeepSeek-V4-Pro`,
               label: 'macOS / Linux',
               steps: [
                 {
-                  title: 'Step 1: Start LiteLLM Gateway',
-                  description: 'Launch the translation proxy in a background terminal session:',
-                  command: 'litellm --model openai/deepseek-ai/DeepSeek-V4-Pro --api_base https://api-inference.modelscope.cn/v1 --api_key YOUR_MODELSCOPE_TOKEN --port 4000',
+                  title: 'Step 1: Configure Environment Variables',
+                  description:
+                    'Direct Claude Code to the ModelScope native Anthropic gateway by adding these exports to your `~/.zshrc` or `~/.bashrc`:',
+                  command: `echo 'export ANTHROPIC_BASE_URL="https://api-inference.modelscope.ai"' >> ~/.zshrc
+echo 'export ANTHROPIC_API_KEY="ms-YOUR_MODELSCOPE_TOKEN"' >> ~/.zshrc
+echo 'export ANTHROPIC_MODEL="deepseek-ai/DeepSeek-V4-Pro-0813"' >> ~/.zshrc
+source ~/.zshrc`,
                 },
                 {
-                  title: 'Step 2: Direct Claude Code to Local Gateway',
-                  description: 'Configure environment variables pointing Claude Code to the local proxy:',
-                  command: `export ANTHROPIC_BASE_URL="http://localhost:4000"
-export ANTHROPIC_API_KEY="dummy-key"`,
-                },
-                {
-                  title: 'Step 3: Launch Claude Code',
-                  description: 'Run Claude Code in your project directory:',
+                  title: 'Step 2: Launch Claude Code',
+                  description:
+                    'Run Claude Code directly in your project repository. It communicates straight with ModelScope via the native Anthropic Messages API:',
                   command: 'claude',
                 },
               ],
@@ -554,19 +506,15 @@ export ANTHROPIC_API_KEY="dummy-key"`,
               label: 'Windows',
               steps: [
                 {
-                  title: 'Step 1: Start LiteLLM Proxy',
-                  description: 'In PowerShell, start LiteLLM:',
-                  command: 'litellm --model openai/deepseek-ai/DeepSeek-V4-Pro --api_base https://api-inference.modelscope.cn/v1 --api_key YOUR_MODELSCOPE_TOKEN --port 4000',
+                  title: 'Step 1: Set Persistent Environment Variables',
+                  description: 'Execute in PowerShell as user to configure your Anthropic gateway variables:',
+                  command: `[System.Environment]::SetEnvironmentVariable('ANTHROPIC_BASE_URL', 'https://api-inference.modelscope.ai', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', 'ms-YOUR_MODELSCOPE_TOKEN', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_MODEL', 'deepseek-ai/DeepSeek-V4-Pro-0813', 'User')`,
                 },
                 {
-                  title: 'Step 2: Set Session Variables',
-                  description: 'Point Claude Code to the local proxy listener:',
-                  command: `$env:ANTHROPIC_BASE_URL = "http://localhost:4000"
-$env:ANTHROPIC_API_KEY = "dummy-key"`,
-                },
-                {
-                  title: 'Step 3: Launch Claude Code',
-                  description: 'Launch Claude Code:',
+                  title: 'Step 2: Launch Claude Code',
+                  description: 'Open a fresh PowerShell window and start Claude Code:',
                   command: 'claude',
                 },
               ],
@@ -596,7 +544,7 @@ $env:ANTHROPIC_API_KEY = "dummy-key"`,
       title: '7. Troubleshooting & Status Codes',
       lead: 'Quick reference for resolving common gateway responses and network behaviors:',
       unorderedList: [
-        '**HTTP 404 (Browser Visit)**: Expected behavior. `https://api-inference.modelscope.cn/v1` is an API gateway that responds only to authenticated POST requests, not GET browser requests.',
+        '**HTTP 404 (Browser Visit)**: Expected behavior. `https://api-inference.modelscope.ai/v1` is an API gateway that responds only to authenticated POST requests, not GET browser requests.',
         '**HTTP 401 Unauthorized**: The `Authorization: Bearer <TOKEN>` header is missing, malformed, or invalid. Verify and regenerate your token on [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken).',
         '**HTTP 402 / 429 Insufficient Magicubes**: ModelScope API inference requires an active Magicube balance. If your requests fail with an insufficient balance error, execute the 2-minute daily routine (Login + Binding + 20 Likes + 2 Comments) on [https://modelscope.ai](https://modelscope.ai) to instantly claim 300 Magicubes (10–15 million tokens of compute).',
         '**Magicubes as Sole Currency**: All inference endpoints (DeepSeek, GLM, Qwen) directly consume Magicubes. Monitor your active balance and token burns in real time at [https://modelscope.ai/magicube/usage?tab=usage](https://modelscope.ai/magicube/usage?tab=usage).',
