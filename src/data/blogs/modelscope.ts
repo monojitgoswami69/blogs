@@ -18,7 +18,7 @@ export const modelscopeBlog: BlogPost = {
     type: 'info',
     title: 'ModelScope Free Tier & Magicubes Architecture',
     content:
-      'ModelScope operates an international portal at [https://modelscope.ai](https://modelscope.ai). The platform provides two independent reward and quota systems: a free developer tier for the OpenAI-compatible inference endpoint (`https://api-inference.modelscope.cn/v1`) with 2,000 requests per day, alongside the Magicubes reward system that grants compute credits for referrals, daily check-ins, and resource-heavy tasks.',
+      'ModelScope operates an international portal at [https://modelscope.ai](https://modelscope.ai). The platform provides two independent reward and quota systems: a free developer tier for the OpenAI-compatible inference endpoint (`https://api-inference.modelscope.cn/v1`) with 2,000 requests per day, alongside the Magicubes reward system where developers can easily guarantee 300 Magicubes daily (funding 10 to 15 million tokens of compute) through quick check-ins, likes, and comments.',
   },
   sections: [
     {
@@ -46,42 +46,53 @@ export const modelscopeBlog: BlogPost = {
     {
       id: 'cubes-rewards-system',
       title: '2. The Magicubes Rewards & Referral System',
-      lead: 'ModelScope operates a unified community points and compute currency called Magicubes (accessible at [modelscope.ai/magicube/usage?tab=earn](https://modelscope.ai/magicube/usage?tab=earn)). Magicubes power resource-heavy platform tasks such as Civision AI image and video synthesis, LoRA fine-tuning, and GPU studios, operating completely independent from your free 2,000 requests/day API inference quota.',
+      lead: 'ModelScope operates a unified community points and compute currency called Magicubes (accessible at [modelscope.ai/magicube/usage?tab=earn](https://modelscope.ai/magicube/usage?tab=earn)). In addition to free OpenAI-compatible API calls, developers can guarantee 300 Magicubes every single day in under two minutes—delivering massive compute runway that easily powers 10 to 15 million tokens.',
       actionButton: {
         text: 'View Magicubes Rewards Dashboard →',
         url: 'https://modelscope.ai/magicube/usage?tab=earn',
       },
       notice: {
-        type: 'info',
-        title: 'Dual-Tier Quota Independence',
+        type: 'tip',
+        title: 'The 300 Daily Magicubes Formula (10–15 Million Tokens Runway)',
         content:
-          'API inference and Magicubes operate as independent systems. Your 2,000 free requests per day on `https://api-inference.modelscope.cn/v1` (for DeepSeek-V4 Pro, GLM-5.2, Qwen) do NOT deduct Magicubes. Magicubes are compute credits specifically for on-platform LoRA training, GPU studios, and media generation.',
+          'You can guarantee exactly 300 Magicubes every day in under 2 minutes: Login (+200), Alibaba Cloud account binding (+50), like 20 items (+40), and post 2 comments (+10). A single day\'s 300 Magicubes lasts an exceptionally long time—easily covering 10 to 15 million tokens depending on your chosen model and prompt caching style.',
       },
       subsections: [
         {
-          id: 'daily-and-invitation-rewards',
-          title: 'Daily Rewards & Referral Mechanics',
+          id: 'guaranteed-daily-routine',
+          title: 'The Guaranteed 300 Magicubes/Day Routine (10–15 Million Tokens)',
           description:
-            'The core baseline of your Magicubes balance is earned through routine daily logins, account binding, and referring fellow developers:',
+            'By pairing your daily check-in with a few clicks across community assets, you can guarantee 300 Magicubes every day with minimal effort:',
+          orderedList: [
+            '**Daily Login (+200 Magicubes)**: Issued daily upon logging into [modelscope.ai](https://modelscope.ai) and completing any usage action on the platform.',
+            '**Alibaba Cloud Account Binding (+50 Magicubes)**: Issued daily upon login after binding your Alibaba Cloud account under [Account Settings](https://modelscope.ai/my/settings/account).',
+            '**Like 20 Community Assets (+40 Magicubes)**: Favorite or like any 20 items across ModelScope (models, technical docs, research papers, datasets, or studios) at +2 Magicubes per like (20 x 2 = +40 daily).',
+            '**Post 2 Comments (+10 Magicubes)**: Leave 2 constructive comments on any community posts, models, or articles at +5 Magicubes per comment (2 x 5 = +10 daily).',
+            '**Daily Guaranteed Total: 300 Magicubes**: Exactly 300 Magicubes credited each day (200 + 50 + 40 + 10), amounting to 9,000 Magicubes every 30 days.',
+            '**Enormous Compute Runway (10–15 Million Tokens)**: 300 Magicubes lasts for a very long time. Due to competitive token pricing and lightweight platform jobs, 300 daily cubes easily translates into **10 to 15 million tokens** of generative AI workload depending on your model selection and prompt optimization.',
+          ],
+        },
+        {
+          id: 'referral-and-invitation-program',
+          title: 'Referrals & Invitation Code Program',
+          description:
+            'Developers can expand their token and compute pool by inviting teammates and contributors via [Invite Friends](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true):',
           unorderedList: [
-            '**Sign up via Invitation (+50 Magicubes)**: Earned immediately by signing up successfully with an invitation code (Long-term milestone).',
-            '**Invite Friends (+20 Magicubes / user)**: Earn +20 Magicubes whenever a new user signs up with your referral code via [Invite Friends](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true). Capped at **up to 50 users per month** (earning up to +1,000 Magicubes monthly).',
-            '**Daily Login (+200 Magicubes)**: Issued daily upon logging in to [modelscope.ai](https://modelscope.ai) and completing any platform usage action.',
-            '**Alibaba Cloud Binding (+50 Magicubes)**: Issued daily upon login after binding your Alibaba Cloud account in [Account Settings](https://modelscope.ai/my/settings/account).',
-            '**Guaranteed Daily Passive**: Simply checking in and triggering any action with a bound Alibaba Cloud account earns **+250 Magicubes every day** (~7,500 Magicubes/month) with zero extra overhead.',
+            '**Sign up via Invitation (+50 Magicubes)**: Any new developer who registers on ModelScope with an invitation code immediately receives a **+50 Magicubes** welcome credit (Long-term milestone).',
+            '**Invite Friends (+20 Magicubes / user)**: Receive **+20 Magicubes** whenever a colleague signs up with your personal referral link or code.',
+            '**Monthly Referral Limit**: Capped at **up to 50 users per month**, allowing you to earn up to **+1,000 Magicubes monthly** exclusively through referrals.',
+            '**Dual-Tier Quota Independence**: Magicubes do not diminish your API inference quota. Standard OpenAI-compatible LLM completions (DeepSeek-V4 Pro, GLM-5.2, Qwen) run through your 2,000 free daily API gateway requests, while Magicubes fund heavy GPU generation and LoRA training.',
           ],
         },
         {
           id: 'profile-and-community',
-          title: 'Profile Completion & Community Interactions',
+          title: 'Profile Setup & Quick Milestones (+150 Total)',
           description:
-            'New accounts can quickly bootstrap their initial Magicube balance with one-time profile milestones, plus recurring community engagement bonuses:',
+            'New accounts can quickly build an initial reserve through one-time profile verification tasks totaling +150 Magicubes:',
           unorderedList: [
             '**Verify Email (+50 Magicubes)**: Add and verify your developer email address in [Account Settings](https://modelscope.ai/my/settings/account) (Long-term).',
-            '**Complete Profile - Edit Experience (+50 Magicubes)**: Fill in your bio and background under [Profile Settings](https://modelscope.ai/my/settings/profile) and save (Long-term).',
+            '**Complete Profile - Edit Experience (+50 Magicubes)**: Fill in your bio and developer background under [Profile Settings](https://modelscope.ai/my/settings/profile) and save (Long-term).',
             '**Complete Profile - Pin Highlights (+50 Magicubes)**: Pin featured models, datasets, or studios to your public profile page and save (Long-term).',
-            '**Post a Comment (+5 Magicubes each)**: Comment on another user\'s post or technical article (capped at 2 times daily = up to **+10 Magicubes/day**).',
-            '**Favorite / Like (+2 Magicubes each)**: Favorite or like another user\'s post, studio, or model (capped at 20 times daily = up to **+40 Magicubes/day**).',
           ],
         },
         {
@@ -120,7 +131,7 @@ export const modelscopeBlog: BlogPost = {
         content:
           'Follow these tips to keep your compute balance topped up:',
         list: [
-          'Claim your daily login reward (+200) and link Alibaba Cloud (+50) for a guaranteed +250 Magicubes every morning.',
+          'Execute the 2-minute daily routine: Login (+200), Alibaba Cloud Binding (+50), like 20 models/papers/docs (+40), and post 2 comments (+10) to secure your guaranteed 300 Magicubes (10-15M tokens capacity) every day.',
           'Complete the three one-time profile steps (email verification, bio, pinned items) for an immediate +150 Magicube boost.',
           'Share your invitation link at [modelscope.ai/magicube/usage?tab=earn&inviteModal=true](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true) to earn +20 Magicubes per developer signup (up to 50 per month).',
           'Run your day-to-day coding agents (OpenCode, Claude Code, Cursor) using the free 2,000 daily API inference quota, saving your Magicubes for heavy GPU notebook and LoRA training jobs.',
