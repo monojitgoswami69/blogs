@@ -3,12 +3,12 @@ import { BlogPost } from '../../types/blog';
 export const modelscopeBlog: BlogPost = {
   slug: 'modelscope',
   title: 'ModelScope AI Inference Setup Guide',
-  subtitle: 'DeepSeek-V4 Pro, GLM-5.2 & Qwen Integration via OpenAI-Compatible API with Free Daily Quota',
+  subtitle: 'DeepSeek-V4 Pro, GLM-5.2 & Qwen Integration with Free Daily Quota & Cubes Rewards',
   description:
-    'Complete step-by-step technical guide to using ModelScope MaaS inference API, generating access tokens, and integrating GLM-5.2, DeepSeek-V4 Pro, and Qwen with OpenCode, Claude Code, Cursor, and Python.',
+    'Complete step-by-step technical guide to ModelScope AI inference on modelscope.ai, generating access tokens, the new Magic Cubes referral rewards system, and integrating GLM-5.2, DeepSeek-V4 Pro, and Qwen with OpenCode, Claude Code, Cursor, and Python.',
   publishedAt: '2026-09-04',
   updatedAt: '2026-09-04',
-  readingTime: '6 min read',
+  readingTime: '7 min read',
   tags: ['AI', 'ModelScope', 'DeepSeek', 'GLM-5.2', 'OpenCode', 'Claude Code', 'Cursor', 'Guide'],
   author: {
     name: 'Monojit Goswami',
@@ -16,63 +16,86 @@ export const modelscopeBlog: BlogPost = {
   },
   notice: {
     type: 'info',
-    title: 'ModelScope Free Inference Quota',
+    title: 'ModelScope Free Tier & Cubes Architecture',
     content:
-      'ModelScope provides a free developer tier for its OpenAI-compatible inference endpoint (`https://api-inference.modelscope.cn/v1`). Registered users receive a dynamic daily allocation of approximately 2,000 requests per day in aggregate, with a per-model limit of roughly 500 requests per day. No credit card is required to access the free tier.',
+      'ModelScope operates an international portal at [https://modelscope.ai](https://modelscope.ai). The platform provides two independent reward and quota systems: a free developer tier for the OpenAI-compatible inference endpoint (`https://api-inference.modelscope.cn/v1`) with 2,000 requests per day, alongside the newly launched Magic Cubes reward system that grants compute credits for referrals, daily check-ins, and resource-heavy tasks.',
   },
   sections: [
     {
       id: 'account-token-setup',
-      title: '1. Account Registration & Access Token Generation',
-      lead: 'To begin calling models through the inference endpoint, create a ModelScope account and generate an API access token.',
+      title: '1. Account Registration & International Portal Access',
+      lead: 'ModelScope hosts its global developer platform at modelscope.ai, featuring direct English documentation, international authentication methods, and API key management.',
       orderedList: [
-        '**Create ModelScope Account**: Navigate to [https://modelscope.cn](https://modelscope.cn) and click the login button in the top-right header. You can authenticate using GitHub, email, or mobile phone verification.',
-        '**Open Access Token Dashboard**: After logging in, navigate directly to your Access Tokens page at [https://modelscope.cn/my/myaccesstoken](https://modelscope.cn/my/myaccesstoken) or open the user dropdown and select "Access Token".',
-        '**Generate New Token**: Click "Create New Token" (新建 Access Token). Provide a descriptive label (such as `coding-assistant-cli`) and confirm token creation.',
-        '**Copy Token Securely**: Copy the generated token string. It typically starts with alphanumeric characters or an `ms-` prefix. Store this key in your local password manager or environment file.',
-        '**Account Verification Note**: Standard free-tier accounts receive immediate inference access. Certain specialized or high-parameter models may require bound phone verification on your profile.',
+        '**Access the International Portal**: Go to [https://modelscope.ai](https://modelscope.ai). Use the international portal rather than the domestic `.cn` domain to access global sign-in methods (such as GitHub, Google, or international phone numbers).',
+        '**Sign Up & Apply Invitation Code**: During registration, enter an invitation or referral code if available. Applying an invitation code awards an immediate welcome bonus of 100 Magic Cubes directly to your account wallet.',
+        '**Open Access Token Dashboard**: After logging in, navigate to [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken) or click on your profile avatar in the header and select "Access Token".',
+        '**Generate New Token**: Click "Create New Token". Assign an identifier (e.g., `developer-cli-agent`) and confirm. ModelScope will display your private API token.',
+        '**Secure Key Storage**: Copy and store your token in an environment variable (`MODELSCOPE_API_TOKEN`) or your password manager. Never commit it to public version control.',
       ],
       actionButton: {
-        text: 'Open ModelScope Token Portal →',
-        url: 'https://modelscope.cn/my/myaccesstoken',
+        text: 'Open ModelScope.ai Portal →',
+        url: 'https://modelscope.ai',
       },
       notice: {
         type: 'warning',
-        title: 'Token Security',
+        title: 'Portal Domain Notice',
         content:
-          'Never commit your ModelScope access token to public repositories or hardcode it in client-side bundles. Use environment variables like `MODELSCOPE_API_TOKEN` or your shell configuration (`~/.zshrc`, `~/.bashrc`).',
+          'Always use [https://modelscope.ai](https://modelscope.ai) for international account management and token generation. The backend OpenAI-compatible inference API endpoint is unified at `https://api-inference.modelscope.cn/v1`.',
+      },
+    },
+    {
+      id: 'cubes-rewards-system',
+      title: '2. The Magic Cubes Rewards & Referral System',
+      lead: 'ModelScope recently revamped its reward structure with Magic Cubes, introducing a gamified compute credit economy alongside new referral counting mechanics.',
+      unorderedList: [
+        '**What are Magic Cubes**: Magic Cubes are internal compute credits used for resource-intensive operations across the platform, including LoRA model fine-tuning, Civision image generation, video synthesis, and serverless GPU Notebook runtimes.',
+        '**Updated Referral Counting**: Referrals are now tracked directly through unique invitation links and codes generated in your user dashboard. When a new developer registers using your invitation code, the referral is validated upon profile creation and basic account verification.',
+        '**Invitee Welcome Bonus**: Any new user signing up via an invitation code automatically receives **100 bonus Magic Cubes** credited immediately to their balance on top of standard onboarding allocations.',
+        '**Referrer Earned Quota**: Referrers accumulate additional Magic Cubes and compute multipliers as invited users activate their accounts and run model tasks.',
+        '**Daily Check-in Rewards**: You can claim free daily Magic Cubes by checking in to the dashboard each day. Daily cubes refresh on a rolling cycle to ensure active builders have continuous compute access.',
+        '**Dual-Tier Resource Separation**: Magic Cubes do not deplete your API-Inference quota. Standard LLM completions (DeepSeek, GLM, Qwen) run through the separate 2,000 calls/day inference gateway, while Magic Cubes fund heavy GPU generation and fine-tuning pipelines.',
+      ],
+      collapsible: {
+        title: 'Maximizing Daily Cubes and Referral Output',
+        content:
+          'Follow these tips to keep your Magic Cube reserves topped up:',
+        list: [
+          'Claim your daily check-in reward immediately upon opening modelscope.ai each morning.',
+          'Share your invitation link with colleagues setting up local AI agents (OpenCode, Claude Code, or Cursor).',
+          'Combine free API inference calls for low-overhead agentic coding, reserving your Magic Cubes for custom model training and multimedia generation.',
+        ],
       },
     },
     {
       id: 'supported-models',
-      title: '2. Supported Foundation Models & Model IDs',
-      lead: 'ModelScope hosts high-performance open-weight models available through its OpenAI-compatible inference gateway. Use the exact model IDs below in your API requests:',
+      title: '3. Supported Foundation Models & Model IDs',
+      lead: 'The inference gateway exposes premier open-weight models through OpenAI-compatible interfaces. Use these exact model identifiers in your API requests:',
       unorderedList: [
-        '**DeepSeek-V4-Pro** (`deepseek-ai/DeepSeek-V4-Pro`): DeepSeek 1.6T parameter MoE architecture with 49B activated parameters per token and a 1-million-token context window. Excels in complex code generation and mathematical reasoning.',
-        '**DeepSeek-V4-Flash** (`deepseek-ai/DeepSeek-V4-Flash`): 284B parameter MoE (13B activated) optimized for low latency and fast tool-use execution with 1M context.',
-        '**DeepSeek-R1** (`deepseek-ai/DeepSeek-R1`): Reasoning model outputting explicit chain-of-thought tokens via `reasoning_content` delta blocks.',
-        '**DeepSeek-V3** (`deepseek-ai/DeepSeek-V3`): General conversational and technical reasoning foundation model.',
-        '**GLM-5.2** (`zai-org/GLM-5.2`): Flagship long-horizon agentic model by Z.ai featuring a 1-million-token context window, IndexShare architecture, and adjustable thinking effort modes.',
-        '**GLM-5** (`zai-org/GLM-5`): High-efficiency system engineering and coding model (744B total, 40B active) utilizing DeepSeek Sparse Attention.',
-        '**Qwen 2.5 Coder 32B** (`Qwen/Qwen2.5-Coder-32B-Instruct`): Specialized coding model with state-of-the-art Python, TypeScript, and system architecture benchmark performance.',
-        '**Qwen 2.5 72B** (`Qwen/Qwen2.5-72B-Instruct`): Versatile instruction-tuned flagship model for complex multi-turn workflows.',
+        '**DeepSeek-V4-Pro** (`deepseek-ai/DeepSeek-V4-Pro`): DeepSeek 1.6T parameter MoE architecture with 49B activated parameters per token and a 1-million-token context window. Ideal for complex system architecture and high-precision code synthesis.',
+        '**DeepSeek-V4-Flash** (`deepseek-ai/DeepSeek-V4-Flash`): 284B parameter MoE (13B activated) designed for sub-second responses and agentic tool-use with 1M context.',
+        '**DeepSeek-R1** (`deepseek-ai/DeepSeek-R1`): Reasoning model providing detailed chain-of-thought traces via `reasoning_content` delta blocks.',
+        '**DeepSeek-V3** (`deepseek-ai/DeepSeek-V3`): General conversational and multi-turn technical foundation model.',
+        '**GLM-5.2** (`zai-org/GLM-5.2`): Flagship long-horizon model by Z.ai featuring 1M tokens context, IndexShare architecture, and dynamic thinking effort modes.',
+        '**GLM-5** (`zai-org/GLM-5`): High-efficiency system engineering model (744B total, 40B active) utilizing DeepSeek Sparse Attention.',
+        '**Qwen 2.5 Coder 32B** (`Qwen/Qwen2.5-Coder-32B-Instruct`): SOTA open coding model specialized in multi-language programming and repository-scale refactoring.',
+        '**Qwen 2.5 72B** (`Qwen/Qwen2.5-72B-Instruct`): High-capacity reasoning engine for technical documentation and complex instructions.',
       ],
       collapsible: {
-        title: 'Quota Allocation & Rate Limits Details',
+        title: 'Rate Limits & Quota Breakdown',
         content:
-          'ModelScope allocates daily quotas dynamically based on platform capacity. Key limitations include:',
+          'The free API inference tier features the following boundaries:',
         list: [
-          'Aggregate Quota: ~2,000 total requests every 24 hours across all models on free tier.',
-          'Per-Model Limit: ~500 requests per model daily. If you hit 429 on `deepseek-ai/DeepSeek-V4-Pro`, you can switch to `zai-org/GLM-5.2` or `Qwen/Qwen2.5-Coder-32B-Instruct` without waiting for the next reset.',
-          'Daily Reset: Quotas reset at 00:00 UTC+8 daily.',
-          'Production SLA: For dedicated production concurrency without rate-limiting, ModelScope offers an API-Provider tier.',
+          'Aggregate Quota: ~2,000 total requests per 24-hour cycle across all models.',
+          'Per-Model Limit: ~500 requests per individual model daily. Hitting 429 on DeepSeek-V4 Pro does not block calls to GLM-5.2 or Qwen 2.5 Coder.',
+          'Reset Time: Quotas reset at 00:00 UTC+8 daily.',
+          'Production Scaling: For dedicated high-concurrency enterprise workloads, ModelScope provides an API-Provider bridge.',
         ],
       },
     },
     {
       id: 'quick-verification',
-      title: '3. Connectivity Verification via cURL & Python',
-      lead: 'Before configuring IDE clients, verify that your ModelScope token is valid and your network can reach the inference gateway.',
+      title: '4. Connectivity Verification via cURL & Python',
+      lead: 'Test your ModelScope token and gateway connectivity with a simple REST request before configuring IDE extensions.',
       platformTabs: [
         {
           id: 'curl-bash',
@@ -80,12 +103,12 @@ export const modelscopeBlog: BlogPost = {
           steps: [
             {
               title: 'Step 1: Export Environment Variable',
-              description: 'Set your ModelScope access token in your terminal session:',
+              description: 'Export your ModelScope access token in your terminal:',
               command: 'export MODELSCOPE_API_TOKEN="YOUR_MODELSCOPE_TOKEN"',
             },
             {
               title: 'Step 2: Send Chat Completion Request',
-              description: 'Call the OpenAI-compatible `/chat/completions` endpoint requesting DeepSeek-V4 Pro:',
+              description: 'Call the OpenAI-compatible endpoint requesting DeepSeek-V4 Pro:',
               command: `curl -X POST "https://api-inference.modelscope.cn/v1/chat/completions" \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer $MODELSCOPE_API_TOKEN" \\
@@ -132,7 +155,7 @@ Invoke-RestMethod -Uri "https://api-inference.modelscope.cn/v1/chat/completions"
       collapsible: {
         title: 'Python OpenAI SDK Verification Example',
         content:
-          'Because ModelScope implements standard OpenAI wire compatibility, the official openai Python library works without extra wrappers:',
+          'Because ModelScope implements standard OpenAI wire compatibility, the official openai Python library works out of the box:',
         code: `from openai import OpenAI
 import os
 
@@ -151,7 +174,6 @@ response = client.chat.completions.create(
 )
 
 for chunk in response:
-    # Print reasoning process if present (e.g. DeepSeek-R1)
     delta = chunk.choices[0].delta
     if hasattr(delta, "reasoning_content") and delta.reasoning_content:
         print(delta.reasoning_content, end="", flush=True)
@@ -162,19 +184,19 @@ print()`,
     },
     {
       id: 'client-configuration',
-      title: '4. AI Coding Client Integration',
-      lead: 'Integrate ModelScope models directly into your terminal workflows and editor environments. Select your client below:',
+      title: '5. AI Coding Client Integration',
+      lead: 'Connect ModelScope directly to your terminal coding agents and editor plugins. Select your preferred client below:',
       clientGuides: [
         {
           id: 'opencode',
           title: 'OpenCode CLI',
-          lead: 'Configure the OpenCode agent to route system edits and refactoring tasks through ModelScope.',
+          lead: 'Route OpenCode automated refactoring sessions through ModelScope models.',
           collapsiblePrerequisites: {
             title: 'Prerequisites: OpenCode CLI Installation',
-            content: 'Ensure OpenCode is installed on your machine:',
+            content: 'Ensure OpenCode is installed on your system:',
             code: 'opencode --version',
             list: [
-              'Install via npm: `npm install -g opencode`',
+              'Install globally via npm: `npm install -g opencode`',
               'Or install via Homebrew (macOS): `brew install opencode`',
             ],
           },
@@ -184,17 +206,17 @@ print()`,
               label: 'macOS / Linux',
               steps: [
                 {
-                  title: 'Step 1: Configure Environment Variables',
+                  title: 'Step 1: Configure Shell Profile',
                   description:
-                    'Add the ModelScope endpoint and token to your shell profile (`~/.zshrc` or `~/.bashrc`):',
+                    'Add the ModelScope endpoint and token to your shell configuration (`~/.zshrc` or `~/.bashrc`):',
                   command: `echo 'export OPENAI_BASE_URL="https://api-inference.modelscope.cn/v1"' >> ~/.zshrc
 echo 'export OPENAI_API_KEY="YOUR_MODELSCOPE_TOKEN"' >> ~/.zshrc
 source ~/.zshrc`,
                 },
                 {
-                  title: 'Step 2: Create OpenCode Configuration File',
+                  title: 'Step 2: Define Provider in Config',
                   description:
-                    'Create or edit `~/.config/opencode/config.json` to define ModelScope as your active provider:',
+                    'Create or edit `~/.config/opencode/config.json` with your ModelScope model configurations:',
                   code: {
                     filename: '~/.config/opencode/config.json',
                     language: 'json',
@@ -221,7 +243,7 @@ source ~/.zshrc`,
                 },
                 {
                   title: 'Step 3: Launch OpenCode Session',
-                  description: 'Start an agent session specifying your preferred model:',
+                  description: 'Start an agent session specifying DeepSeek-V4 Pro:',
                   command: 'opencode --model deepseek-ai/DeepSeek-V4-Pro',
                 },
               ],
@@ -232,7 +254,7 @@ source ~/.zshrc`,
               steps: [
                 {
                   title: 'Step 1: Set Persistent Environment Variables',
-                  description: 'Run in PowerShell as Administrator or current user:',
+                  description: 'Execute in PowerShell as user:',
                   command: `[System.Environment]::SetEnvironmentVariable('OPENAI_BASE_URL', 'https://api-inference.modelscope.cn/v1', 'User')
 [System.Environment]::SetEnvironmentVariable('OPENAI_API_KEY', 'YOUR_MODELSCOPE_TOKEN', 'User')`,
                 },
@@ -275,7 +297,7 @@ source ~/.zshrc`,
         {
           id: 'codex',
           title: 'OpenAI Codex CLI',
-          lead: 'Route the @openai/codex CLI through ModelScope OpenAI-compatible endpoints.',
+          lead: 'Route the official @openai/codex CLI tool through ModelScope endpoints.',
           collapsiblePrerequisites: {
             title: 'Prerequisites: Node.js 18+',
             content: 'Verify Node.js runtime availability:',
@@ -291,7 +313,7 @@ source ~/.zshrc`,
               steps: [
                 {
                   title: 'Step 1: Configure ~/.codex/auth.json',
-                  description: 'Create the configuration directory and add your ModelScope credentials:',
+                  description: 'Create the configuration directory and register your credentials:',
                   command: 'mkdir -p ~/.codex',
                   code: {
                     filename: '~/.codex/auth.json',
@@ -306,8 +328,8 @@ source ~/.zshrc`,
                   },
                 },
                 {
-                  title: 'Step 2: Configure Base URL and Model in Settings',
-                  description: 'Create `~/.codex/config.json` to route requests to ModelScope:',
+                  title: 'Step 2: Configure Base URL and Model',
+                  description: 'Create `~/.codex/config.json` routing requests to ModelScope:',
                   code: {
                     filename: '~/.codex/config.json',
                     language: 'json',
@@ -323,8 +345,8 @@ source ~/.zshrc`,
                   },
                 },
                 {
-                  title: 'Step 3: Run Codex Query',
-                  description: 'Execute Codex against your local workspace:',
+                  title: 'Step 3: Run Codex Command',
+                  description: 'Run Codex against your local workspace:',
                   command: 'codex "Implement a token bucket rate limiter in Go"',
                 },
               ],
@@ -339,7 +361,7 @@ source ~/.zshrc`,
                   command: 'New-Item -ItemType Directory -Force -Path "$HOME\\.codex"',
                 },
                 {
-                  title: 'Step 2: Configure auth.json and config.json',
+                  title: 'Step 2: Configure Settings File',
                   description: 'Create `$HOME\\.codex\\config.json` with the ModelScope gateway settings:',
                   code: {
                     filename: '$HOME\\.codex\\config.json',
@@ -367,7 +389,7 @@ source ~/.zshrc`,
         {
           id: 'cursor-cline',
           title: 'Cursor & VS Code (Cline / Roo Code)',
-          lead: 'Configure editor extensions like Cursor AI, Cline, or Roo Code to leverage ModelScope models for inline completions and agentic edits.',
+          lead: 'Configure editor extensions like Cursor AI, Cline, or Roo Code to leverage ModelScope models for inline code generation and repository-wide refactoring.',
           platforms: [
             {
               id: 'cursor-ide',
@@ -384,11 +406,11 @@ source ~/.zshrc`,
                     'Under the OpenAI API Key section, enter your ModelScope Access Token. Click **Override OpenAI Base URL** and enter: `https://api-inference.modelscope.cn/v1`.',
                 },
                 {
-                  title: 'Step 3: Add Custom Model Names',
+                  title: 'Step 3: Add Custom Model Identifiers',
                   description:
                     'Turn off default OpenAI models and click **+ Add model**. Add the following ModelScope identifiers:',
                   command: 'deepseek-ai/DeepSeek-V4-Pro',
-                  note: 'Also add `zai-org/GLM-5.2` and `Qwen/Qwen2.5-Coder-32B-Instruct` as additional selectable models.',
+                  note: 'Also add `zai-org/GLM-5.2` and `Qwen/Qwen2.5-Coder-32B-Instruct` as selectable models.',
                 },
               ],
             },
@@ -408,7 +430,7 @@ source ~/.zshrc`,
                 },
                 {
                   title: 'Step 3: Populate Connection Details',
-                  description: 'Fill in the following connection parameters:',
+                  description: 'Fill in the connection parameters:',
                   code: {
                     filename: 'Cline Provider Settings',
                     language: 'text',
@@ -420,7 +442,7 @@ Model ID: deepseek-ai/DeepSeek-V4-Pro`,
                 {
                   title: 'Step 4: Verify and Save',
                   description:
-                    'Click Done / Save. Test with a quick query like "Explain the current workspace package.json".',
+                    'Click Done / Save. Test with a quick prompt like "Audit this codebase for missing error handlers".',
                 },
               ],
             },
@@ -431,9 +453,9 @@ Model ID: deepseek-ai/DeepSeek-V4-Pro`,
           title: 'Claude Code (Proxy Gateway)',
           lead: 'Run @anthropic-ai/claude-code using a lightweight OpenAI-to-Anthropic proxy gateway directing requests to ModelScope.',
           collapsiblePrerequisites: {
-            title: 'Proxy Requirement Notice',
+            title: 'Proxy Translation Requirement',
             content:
-              'Claude Code natively communicates using Anthropic Messages API format (`/v1/messages`). To use ModelScope models with Claude Code, run a local translation proxy (such as liteLLM or open-router proxy) that accepts Anthropic format and translates to OpenAI-compatible `/chat/completions`.',
+              'Claude Code uses the Anthropic Messages API format (`/v1/messages`). To connect ModelScope to Claude Code, run a lightweight proxy (such as LiteLLM) that receives Anthropic requests and translates them to OpenAI-compatible `/chat/completions`.',
             list: [
               'Install litellm: `pip install litellm`',
               'Proxy command: `litellm --model openai/deepseek-ai/DeepSeek-V4-Pro --api_base https://api-inference.modelscope.cn/v1`',
@@ -451,12 +473,12 @@ Model ID: deepseek-ai/DeepSeek-V4-Pro`,
                 },
                 {
                   title: 'Step 2: Direct Claude Code to Local Gateway',
-                  description: 'Set the Anthropic base URL environment variable to point to the local proxy:',
+                  description: 'Configure environment variables pointing Claude Code to the local proxy:',
                   command: `export ANTHROPIC_BASE_URL="http://localhost:4000"
 export ANTHROPIC_API_KEY="dummy-key"`,
                 },
                 {
-                  title: 'Step 3: Run Claude Code',
+                  title: 'Step 3: Launch Claude Code',
                   description: 'Run Claude Code in your project directory:',
                   command: 'claude',
                 },
@@ -472,13 +494,13 @@ export ANTHROPIC_API_KEY="dummy-key"`,
                   command: 'litellm --model openai/deepseek-ai/DeepSeek-V4-Pro --api_base https://api-inference.modelscope.cn/v1 --api_key YOUR_MODELSCOPE_TOKEN --port 4000',
                 },
                 {
-                  title: 'Step 2: Set Environment Variables in Client Session',
+                  title: 'Step 2: Set Session Variables',
                   description: 'Point Claude Code to the local proxy listener:',
                   command: `$env:ANTHROPIC_BASE_URL = "http://localhost:4000"
 $env:ANTHROPIC_API_KEY = "dummy-key"`,
                 },
                 {
-                  title: 'Step 3: Run Claude Code',
+                  title: 'Step 3: Launch Claude Code',
                   description: 'Launch Claude Code:',
                   command: 'claude',
                 },
@@ -490,30 +512,30 @@ $env:ANTHROPIC_API_KEY = "dummy-key"`,
     },
     {
       id: 'advanced-reasoning',
-      title: '5. Handling Reasoning Models & Context Windows',
-      lead: 'Advanced architectures such as DeepSeek-R1 and GLM-5.2 introduce specific behaviors that clients must handle correctly.',
+      title: '6. Handling Reasoning Models & 1M-Token Contexts',
+      lead: 'DeepSeek-R1 and GLM-5.2 introduce reasoning tokens and ultra-long context windows that require proper client parameterization.',
       orderedList: [
-        '**Reasoning Content Parsing**: Reasoning models generate internal reasoning traces before producing final answers. When consuming streaming responses via the `/chat/completions` protocol, check for `chunk.choices[0].delta.reasoning_content`. Clients that do not support reasoning fields may only display the final content block once thinking concludes.',
-        '**1-Million-Token Contexts**: Both DeepSeek-V4 Pro and GLM-5.2 support context windows up to 1,000,000 tokens. When submitting large repositories or extensive log traces, ensure your client HTTP timeout is configured to at least 120 seconds to prevent network disconnects during prompt processing.',
-        '**Sampling Parameters**: For structured code generation and agentic editing tasks, maintain temperature between `0.0` and `0.3`. For open-ended creative tasks or high reasoning depth, use `0.6` to `0.7`.',
+        '**Reasoning Content Parsing**: Reasoning models output thinking tokens in `chunk.choices[0].delta.reasoning_content` before standard `delta.content`. In agents that stream responses, ensure thinking streams are handled cleanly without collision.',
+        '**1-Million-Token Contexts**: DeepSeek-V4 Pro and GLM-5.2 both support 1,000,000 tokens of context. For multi-file analysis or repository-scale prompts, increase your client timeout to 90–120 seconds to accommodate initial prompt evaluation.',
+        '**Sampling Parameters**: Use temperature `0.0` to `0.2` for precise code refactoring and tool calls. Increase to `0.6` for open-ended brainstorming or high thinking depth.',
       ],
       notice: {
         type: 'tip',
-        title: 'Model Fallback Strategy',
+        title: 'Multi-Model Fallback Hierarchy',
         content:
-          'Because ModelScope imposes per-model daily limits (~500 calls/day per model), configure your multi-agent tooling with a fallback chain: start with `deepseek-ai/DeepSeek-V4-Pro`, fall back to `zai-org/GLM-5.2` upon HTTP 429, and fall back to `Qwen/Qwen2.5-Coder-32B-Instruct` for routine refactoring.',
+          'Because ModelScope imposes per-model daily limits (~500 calls/day per model), set up your agent with a multi-model fallback chain: start with `deepseek-ai/DeepSeek-V4-Pro`, fall back to `zai-org/GLM-5.2` upon encountering HTTP 429, and use `Qwen/Qwen2.5-Coder-32B-Instruct` for routine syntax refactoring.',
       },
     },
     {
       id: 'troubleshooting',
-      title: '6. Troubleshooting & Common Status Codes',
-      lead: 'Refer to this table and checklist when diagnosing connection issues with the ModelScope gateway:',
+      title: '7. Troubleshooting & Status Codes',
+      lead: 'Quick reference for resolving common gateway responses and network behaviors:',
       unorderedList: [
-        '**HTTP 404 (Page Not Found when visited in browser)**: Normal behavior. `https://api-inference.modelscope.cn/v1` is an API gateway that responds to POST requests with authentication, not a browsable web interface.',
-        '**HTTP 401 Unauthorized**: The `Authorization: Bearer <TOKEN>` header is missing, malformed, or has expired. Verify your token in the ModelScope token dashboard.',
-        '**HTTP 429 Too Many Requests**: You have exceeded the daily request limit (~500 requests for the specific model or ~2,000 total daily). Switch your client model ID to an alternative model or wait until the 00:00 UTC+8 daily reset.',
-        '**Network Latency & Timeouts**: If calling the API from outside East Asia, ensure HTTP connection timeouts in your client configuration are increased to 90–120 seconds, especially for cold-start requests or 1M context evaluation.',
-        '**Phone Verification Prompts**: Certain cutting-edge models require verified real-name or mobile verification on `modelscope.cn`. If your request returns an account verification requirement, log in to ModelScope and complete profile binding.',
+        '**HTTP 404 (Browser Visit)**: Expected behavior. `https://api-inference.modelscope.cn/v1` is an API gateway that responds only to authenticated POST requests, not GET browser requests.',
+        '**HTTP 401 Unauthorized**: The `Authorization: Bearer <TOKEN>` header is missing, malformed, or invalid. Verify and regenerate your token on [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken).',
+        '**HTTP 429 Too Many Requests**: You reached the daily limit (~500 calls for that specific model or ~2,000 daily overall). Switch to another model ID or wait for the 00:00 UTC+8 daily reset.',
+        '**Cubes vs API Quota Exhaustion**: Running out of Magic Cubes only restricts GPU-heavy tasks (like fine-tuning and media generation). Your 2,000 free API inference calls continue to function normally.',
+        '**Connection Timeouts**: When accessing the inference gateway internationally, ensure client HTTP timeouts are set to at least 90 seconds to prevent premature disconnections during cold starts.',
       ],
     },
   ],
