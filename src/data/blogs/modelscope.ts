@@ -26,15 +26,14 @@ export const modelscopeBlog: BlogPost = {
       title: '1. Account Registration & International Portal Access',
       lead: 'ModelScope hosts its global developer platform at modelscope.ai, featuring direct English documentation, international authentication methods, and API key management.',
       orderedList: [
-        '**Access the International Portal**: Go to [https://modelscope.ai](https://modelscope.ai). Use the international portal rather than the domestic `.cn` domain to access global sign-in methods (such as GitHub, Google, or international phone numbers).',
-        '**Sign Up & Apply Invitation Code**: During registration on [modelscope.ai](https://modelscope.ai), enter an invitation or referral code if available. Signing up via an invitation code awards an immediate welcome bonus of **50 Magicubes** directly to your account wallet.',
+        '**Sign Up via Direct Referral Link**: Register directly via the [ModelScope Sign-Up Link](https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register). This direct link automatically applies the referral invite—granting you an immediate **50 Magicubes** welcome bonus directly upon account creation with no separate code entry step needed.',
         '**Open Access Token Dashboard**: After logging in, navigate to [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken) or click on your profile avatar in the header and select "Access Token".',
         '**Generate New Token**: Click "Create New Token". Assign an identifier (e.g., `developer-cli-agent`) and confirm. ModelScope will display your private API token.',
         '**Secure Key Storage**: Copy and store your token in an environment variable (`MODELSCOPE_API_TOKEN`) or your password manager. Never commit it to public version control.',
       ],
       actionButton: {
-        text: 'Open ModelScope.ai Portal →',
-        url: 'https://modelscope.ai',
+        text: 'Sign Up on ModelScope (+50 Free Magicubes) →',
+        url: 'https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register',
       },
       notice: {
         type: 'warning',
@@ -74,12 +73,12 @@ export const modelscopeBlog: BlogPost = {
         },
         {
           id: 'referral-and-invitation-program',
-          title: 'Referrals & Invitation Code Program',
+          title: 'Referrals & Direct Invite Registration',
           description:
-            'Developers can expand their token and compute pool by inviting teammates and contributors via [Invite Friends](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true):',
+            'Developers can expand their token pool by registering through the referral link or inviting their own teammates:',
           unorderedList: [
-            '**Sign up via Invitation (+50 Magicubes)**: Any new developer who registers on ModelScope with an invitation code immediately receives a **+50 Magicubes** welcome credit (Long-term milestone).',
-            '**Invite Friends (+20 Magicubes / user)**: Receive **+20 Magicubes** whenever a colleague signs up with your personal referral link or code.',
+            '**Direct Sign-up (+50 Magicubes)**: Registering through the direct [ModelScope Invite Link](https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register) credits an immediate **+50 Magicubes** welcome bonus to your account without needing an extra manual referral code step.',
+            '**Invite Friends (+20 Magicubes / user)**: Receive **+20 Magicubes** whenever a colleague signs up with your personal referral link or code via [Invite Friends](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true).',
             '**Monthly Referral Limit**: Capped at **up to 50 users per month**, allowing you to earn up to **+1,000 Magicubes monthly** exclusively through referrals.',
             '**Direct Fuel for Coding Agents**: Every Magicube earned through referrals directly finances your coding agent sessions, ensuring your OpenCode, Cursor, and Claude Code instances never run dry.',
           ],
