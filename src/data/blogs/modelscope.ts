@@ -18,13 +18,13 @@ export const modelscopeBlog: BlogPost = {
     type: 'info',
     title: 'ModelScope Architecture: Powered by Magicubes',
     content:
-      'ModelScope operates an international developer portal at [https://modelscope.ai](https://modelscope.ai). All model inference on the OpenAI-compatible gateway (`https://api-inference.modelscope.cn/v1`) is powered by Magicubes. Developers can easily secure a guaranteed 300 Magicubes every single day (fueling 10 to 15 million tokens of compute) in under two minutes through routine check-ins, likes, and comments.',
+      'ModelScope provides premier open-weight AI models at [https://modelscope.ai](https://modelscope.ai). All model inference on the OpenAI-compatible gateway (`https://api-inference.modelscope.cn/v1`) is powered by Magicubes. Developers can easily secure a guaranteed 300 Magicubes every single day (fueling 10 to 15 million tokens of compute) in under two minutes through routine check-ins, likes, and comments.',
   },
   sections: [
     {
       id: 'account-token-setup',
-      title: '1. Account Registration & International Portal Access',
-      lead: 'ModelScope hosts its global developer platform at modelscope.ai, featuring direct English documentation, international authentication methods, and API key management.',
+      title: '1. Account Registration & API Token Setup',
+      lead: 'ModelScope hosts its developer platform at modelscope.ai, featuring complete documentation, seamless authentication (including GitHub and Google), and API key management.',
       orderedList: [
         '**Sign Up via Direct Referral Link**: Register directly via the [ModelScope Sign-Up Link](https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register). This direct link automatically applies the referral invite—granting you an immediate **50 Magicubes** welcome bonus directly upon account creation with no separate code entry step needed.',
         '**Open Access Token Dashboard**: After logging in, navigate to [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken) or click on your profile avatar in the header and select "Access Token".',
@@ -36,10 +36,10 @@ export const modelscopeBlog: BlogPost = {
         url: 'https://modelscope.ai/register?inviteCode=monojitgoswami69&invitorName=monojitgoswami69&login=true&logintype=register',
       },
       notice: {
-        type: 'warning',
-        title: 'Portal Domain Notice',
+        type: 'info',
+        title: 'Gateway Architecture',
         content:
-          'Always use [https://modelscope.ai](https://modelscope.ai) for international account management and token generation. The backend OpenAI-compatible inference API endpoint is unified at `https://api-inference.modelscope.cn/v1`.',
+          'Account management, token generation, and Magicube dashboards are located at [https://modelscope.ai](https://modelscope.ai). The OpenAI-compatible API endpoint for chat completions is hosted at `https://api-inference.modelscope.cn/v1`.',
       },
     },
     {
@@ -606,7 +606,7 @@ $env:ANTHROPIC_API_KEY = "dummy-key"`,
         '**HTTP 401 Unauthorized**: The `Authorization: Bearer <TOKEN>` header is missing, malformed, or invalid. Verify and regenerate your token on [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken).',
         '**HTTP 402 / 429 Insufficient Magicubes**: ModelScope API inference requires an active Magicube balance. If your requests fail with an insufficient balance error, execute the 2-minute daily routine (Login + Binding + 20 Likes + 2 Comments) on [https://modelscope.ai](https://modelscope.ai) to instantly claim 300 Magicubes (10–15 million tokens of compute).',
         '**Magicubes as Sole Currency**: All inference endpoints (DeepSeek, GLM, Qwen) directly consume Magicubes. Monitor your active balance and token burns in real time at [https://modelscope.ai/magicube/usage?tab=usage](https://modelscope.ai/magicube/usage?tab=usage).',
-        '**Connection Timeouts**: When accessing the inference gateway internationally, ensure client HTTP timeouts are set to at least 90 seconds to prevent premature disconnections during cold starts.',
+        '**Connection Timeouts**: When processing deep reasoning traces or large token contexts, ensure client HTTP timeouts are set to at least 90 seconds to prevent premature disconnections during cold starts.',
       ],
     },
   ],
