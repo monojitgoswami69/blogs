@@ -14,12 +14,6 @@ export const modelscopeBlog: BlogPost = {
     name: 'Monojit Goswami',
     url: 'https://mgbuilds.in',
   },
-  notice: {
-    type: 'info',
-    title: 'ModelScope Architecture: Powered by Magicubes',
-    content:
-      'ModelScope provides premier open-weight AI models at [https://modelscope.ai](https://modelscope.ai). All model inference on the OpenAI-compatible gateway (`https://api-inference.modelscope.cn/v1`) is powered by Magicubes. Developers can easily secure a guaranteed 300 Magicubes every single day (fueling 10 to 15 million tokens of compute) in under two minutes through routine check-ins, likes, and comments.',
-  },
   sections: [
     {
       id: 'account-token-setup',
