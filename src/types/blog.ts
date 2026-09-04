@@ -75,6 +75,8 @@ export interface BlogSection {
       type: 'info' | 'warning' | 'tip';
       content: string;
     };
+    orderedList?: string[];
+    unorderedList?: string[];
     codeBlock?: {
       language?: string;
       filename?: string;

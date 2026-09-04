@@ -225,6 +225,26 @@ export default async function BlogPostPage({ params }: Props) {
                         </Notice>
                       )}
 
+                      {sub.orderedList && (
+                        <ol className="step-ordered-list">
+                          {sub.orderedList.map((item, oIdx) => (
+                            <li key={oIdx} className="step-list-item">
+                              {renderFormattedText(item)}
+                            </li>
+                          ))}
+                        </ol>
+                      )}
+
+                      {sub.unorderedList && (
+                        <ul className="step-unordered-list">
+                          {sub.unorderedList.map((item, uIdx) => (
+                            <li key={uIdx} className="step-list-item">
+                              {renderFormattedText(item)}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
                       {sub.command && <CodeBlock code={sub.command} />}
 
                       {sub.codeBlock && (

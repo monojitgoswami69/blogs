@@ -3,9 +3,9 @@ import { BlogPost } from '../../types/blog';
 export const modelscopeBlog: BlogPost = {
   slug: 'modelscope',
   title: 'ModelScope AI Inference Setup Guide',
-  subtitle: 'DeepSeek-V4 Pro, GLM-5.2 & Qwen Integration with Free Daily Quota & Cubes Rewards',
+  subtitle: 'DeepSeek-V4 Pro, GLM-5.2 & Qwen Integration with Free Daily Quota & Magicubes Rewards',
   description:
-    'Complete step-by-step technical guide to ModelScope AI inference on modelscope.ai, generating access tokens, the new Magic Cubes referral rewards system, and integrating GLM-5.2, DeepSeek-V4 Pro, and Qwen with OpenCode, Claude Code, Cursor, and Python.',
+    'Complete step-by-step technical guide to ModelScope AI inference on modelscope.ai, generating access tokens, the Magicubes referral rewards system, and integrating GLM-5.2, DeepSeek-V4 Pro, and Qwen with OpenCode, Claude Code, Cursor, and Python.',
   publishedAt: '2026-09-04',
   updatedAt: '2026-09-04',
   readingTime: '7 min read',
@@ -16,9 +16,9 @@ export const modelscopeBlog: BlogPost = {
   },
   notice: {
     type: 'info',
-    title: 'ModelScope Free Tier & Cubes Architecture',
+    title: 'ModelScope Free Tier & Magicubes Architecture',
     content:
-      'ModelScope operates an international portal at [https://modelscope.ai](https://modelscope.ai). The platform provides two independent reward and quota systems: a free developer tier for the OpenAI-compatible inference endpoint (`https://api-inference.modelscope.cn/v1`) with 2,000 requests per day, alongside the newly launched Magic Cubes reward system that grants compute credits for referrals, daily check-ins, and resource-heavy tasks.',
+      'ModelScope operates an international portal at [https://modelscope.ai](https://modelscope.ai). The platform provides two independent reward and quota systems: a free developer tier for the OpenAI-compatible inference endpoint (`https://api-inference.modelscope.cn/v1`) with 2,000 requests per day, alongside the Magicubes reward system that grants compute credits for referrals, daily check-ins, and resource-heavy tasks.',
   },
   sections: [
     {
@@ -27,7 +27,7 @@ export const modelscopeBlog: BlogPost = {
       lead: 'ModelScope hosts its global developer platform at modelscope.ai, featuring direct English documentation, international authentication methods, and API key management.',
       orderedList: [
         '**Access the International Portal**: Go to [https://modelscope.ai](https://modelscope.ai). Use the international portal rather than the domestic `.cn` domain to access global sign-in methods (such as GitHub, Google, or international phone numbers).',
-        '**Sign Up & Apply Invitation Code**: During registration, enter an invitation or referral code if available. Applying an invitation code awards an immediate welcome bonus of 100 Magic Cubes directly to your account wallet.',
+        '**Sign Up & Apply Invitation Code**: During registration on [modelscope.ai](https://modelscope.ai), enter an invitation or referral code if available. Signing up via an invitation code awards an immediate welcome bonus of **50 Magicubes** directly to your account wallet.',
         '**Open Access Token Dashboard**: After logging in, navigate to [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken) or click on your profile avatar in the header and select "Access Token".',
         '**Generate New Token**: Click "Create New Token". Assign an identifier (e.g., `developer-cli-agent`) and confirm. ModelScope will display your private API token.',
         '**Secure Key Storage**: Copy and store your token in an environment variable (`MODELSCOPE_API_TOKEN`) or your password manager. Never commit it to public version control.',
@@ -45,24 +45,85 @@ export const modelscopeBlog: BlogPost = {
     },
     {
       id: 'cubes-rewards-system',
-      title: '2. The Magic Cubes Rewards & Referral System',
-      lead: 'ModelScope recently revamped its reward structure with Magic Cubes, introducing a gamified compute credit economy alongside new referral counting mechanics.',
-      unorderedList: [
-        '**What are Magic Cubes**: Magic Cubes are internal compute credits used for resource-intensive operations across the platform, including LoRA model fine-tuning, Civision image generation, video synthesis, and serverless GPU Notebook runtimes.',
-        '**Updated Referral Counting**: Referrals are now tracked directly through unique invitation links and codes generated in your user dashboard. When a new developer registers using your invitation code, the referral is validated upon profile creation and basic account verification.',
-        '**Invitee Welcome Bonus**: Any new user signing up via an invitation code automatically receives **100 bonus Magic Cubes** credited immediately to their balance on top of standard onboarding allocations.',
-        '**Referrer Earned Quota**: Referrers accumulate additional Magic Cubes and compute multipliers as invited users activate their accounts and run model tasks.',
-        '**Daily Check-in Rewards**: You can claim free daily Magic Cubes by checking in to the dashboard each day. Daily cubes refresh on a rolling cycle to ensure active builders have continuous compute access.',
-        '**Dual-Tier Resource Separation**: Magic Cubes do not deplete your API-Inference quota. Standard LLM completions (DeepSeek, GLM, Qwen) run through the separate 2,000 calls/day inference gateway, while Magic Cubes fund heavy GPU generation and fine-tuning pipelines.',
+      title: '2. The Magicubes Rewards & Referral System',
+      lead: 'ModelScope operates a unified community points and compute currency called Magicubes (accessible at [modelscope.ai/magicube/usage?tab=earn](https://modelscope.ai/magicube/usage?tab=earn)). Magicubes power resource-heavy platform tasks such as Civision AI image and video synthesis, LoRA fine-tuning, and GPU studios, operating completely independent from your free 2,000 requests/day API inference quota.',
+      actionButton: {
+        text: 'View Magicubes Rewards Dashboard →',
+        url: 'https://modelscope.ai/magicube/usage?tab=earn',
+      },
+      notice: {
+        type: 'info',
+        title: 'Dual-Tier Quota Independence',
+        content:
+          'API inference and Magicubes operate as independent systems. Your 2,000 free requests per day on `https://api-inference.modelscope.cn/v1` (for DeepSeek-V4 Pro, GLM-5.2, Qwen) do NOT deduct Magicubes. Magicubes are compute credits specifically for on-platform LoRA training, GPU studios, and media generation.',
+      },
+      subsections: [
+        {
+          id: 'daily-and-invitation-rewards',
+          title: 'Daily Rewards & Referral Mechanics',
+          description:
+            'The core baseline of your Magicubes balance is earned through routine daily logins, account binding, and referring fellow developers:',
+          unorderedList: [
+            '**Sign up via Invitation (+50 Magicubes)**: Earned immediately by signing up successfully with an invitation code (Long-term milestone).',
+            '**Invite Friends (+20 Magicubes / user)**: Earn +20 Magicubes whenever a new user signs up with your referral code via [Invite Friends](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true). Capped at **up to 50 users per month** (earning up to +1,000 Magicubes monthly).',
+            '**Daily Login (+200 Magicubes)**: Issued daily upon logging in to [modelscope.ai](https://modelscope.ai) and completing any platform usage action.',
+            '**Alibaba Cloud Binding (+50 Magicubes)**: Issued daily upon login after binding your Alibaba Cloud account in [Account Settings](https://modelscope.ai/my/settings/account).',
+            '**Guaranteed Daily Passive**: Simply checking in and triggering any action with a bound Alibaba Cloud account earns **+250 Magicubes every day** (~7,500 Magicubes/month) with zero extra overhead.',
+          ],
+        },
+        {
+          id: 'profile-and-community',
+          title: 'Profile Completion & Community Interactions',
+          description:
+            'New accounts can quickly bootstrap their initial Magicube balance with one-time profile milestones, plus recurring community engagement bonuses:',
+          unorderedList: [
+            '**Verify Email (+50 Magicubes)**: Add and verify your developer email address in [Account Settings](https://modelscope.ai/my/settings/account) (Long-term).',
+            '**Complete Profile - Edit Experience (+50 Magicubes)**: Fill in your bio and background under [Profile Settings](https://modelscope.ai/my/settings/profile) and save (Long-term).',
+            '**Complete Profile - Pin Highlights (+50 Magicubes)**: Pin featured models, datasets, or studios to your public profile page and save (Long-term).',
+            '**Post a Comment (+5 Magicubes each)**: Comment on another user\'s post or technical article (capped at 2 times daily = up to **+10 Magicubes/day**).',
+            '**Favorite / Like (+2 Magicubes each)**: Favorite or like another user\'s post, studio, or model (capped at 20 times daily = up to **+40 Magicubes/day**).',
+          ],
+        },
+        {
+          id: 'civision-aigc',
+          title: 'Civision AIGC Creation & Training Milestones',
+          description:
+            'ModelScope\'s [Civision Generative Suite](https://modelscope.ai/aigc) offers both daily generation rewards and long-term reach milestones:',
+          unorderedList: [
+            '**Publish a Civision creation (+10 Magicubes each)**: Share an image or video creation output in Civision that achieves >= 1 view (capped at 10 times daily = up to **+100 Magicubes/day**).',
+            '**Publish a Civision model (+10 Magicubes each)**: Publish a public LoRA model trained directly in Civision (capped at 5 times daily = up to **+50 Magicubes/day**).',
+            '**Civision creation views milestone (+20 Magicubes)**: Awarded when your Civision creation reaches >= 100 views and >= 3 likes (Long-term).',
+            '**Civision creation feedback milestone (+20 Magicubes)**: Awarded when your Civision creation receives >= 10 interactions including remixes, comments, or likes (Long-term).',
+            '**Civision model impact (+50 Magicubes each)**: Awarded when your trained Civision model reaches >= 10 inference runs and >= 5 likes (capped at 5 times daily, Long-term).',
+          ],
+        },
+        {
+          id: 'open-source-contribution',
+          title: 'Open Source Contribution & Platform Impact',
+          description:
+            'Publishing reusable technical assets, models, datasets, and agents across ModelScope unlocks substantial milestone rewards (+50 Magicubes each unless noted):',
+          unorderedList: [
+            '**Model impact (non-Civision) (+50 Magicubes)**: Awarded when a hosted model reaches >= 100 downloads and >= 5 likes (Long-term).',
+            '**Dataset impact (+50 Magicubes)**: Awarded when a public dataset reaches >= 100 downloads and >= 5 likes (Long-term).',
+            '**Studio Impact - View (+50 Magicubes)**: Awarded when an interactive Studio reaches >= 100 views and >= 5 likes (Long-term).',
+            '**Studio Impact - Fork (+10 Magicubes)**: Awarded whenever another developer duplicates or forks your Studio (Long-term).',
+            '**Gallery Impact - View (+50 Magicubes)**: Awarded when a showcase gallery reaches >= 100 views and >= 5 likes (Long-term).',
+            '**Gallery Impact - Fork (+10 Magicubes)**: Awarded whenever another user forks your gallery (Long-term).',
+            '**Course / Article impact (+50 Magicubes)**: Awarded when a published tutorial, course, or technical article reaches >= 100 views and >= 5 likes (Long-term).',
+            '**Skill Impact (+50 Magicubes)**: Awarded when a published Skill reaches >= 100 downloads and >= 5 likes (Long-term).',
+            '**MCP Influence (+50 Magicubes)**: Awarded when a published MCP (Model Context Protocol) server reaches >= 1,000 calls and >= 10 likes (Long-term).',
+          ],
+        },
       ],
       collapsible: {
-        title: 'Maximizing Daily Cubes and Referral Output',
+        title: 'Maximizing Magicubes and Free Inference Efficiency',
         content:
-          'Follow these tips to keep your Magic Cube reserves topped up:',
+          'Follow these tips to keep your compute balance topped up:',
         list: [
-          'Claim your daily check-in reward immediately upon opening modelscope.ai each morning.',
-          'Share your invitation link with colleagues setting up local AI agents (OpenCode, Claude Code, or Cursor).',
-          'Combine free API inference calls for low-overhead agentic coding, reserving your Magic Cubes for custom model training and multimedia generation.',
+          'Claim your daily login reward (+200) and link Alibaba Cloud (+50) for a guaranteed +250 Magicubes every morning.',
+          'Complete the three one-time profile steps (email verification, bio, pinned items) for an immediate +150 Magicube boost.',
+          'Share your invitation link at [modelscope.ai/magicube/usage?tab=earn&inviteModal=true](https://modelscope.ai/magicube/usage?tab=earn&inviteModal=true) to earn +20 Magicubes per developer signup (up to 50 per month).',
+          'Run your day-to-day coding agents (OpenCode, Claude Code, Cursor) using the free 2,000 daily API inference quota, saving your Magicubes for heavy GPU notebook and LoRA training jobs.',
         ],
       },
     },
@@ -534,7 +595,7 @@ $env:ANTHROPIC_API_KEY = "dummy-key"`,
         '**HTTP 404 (Browser Visit)**: Expected behavior. `https://api-inference.modelscope.cn/v1` is an API gateway that responds only to authenticated POST requests, not GET browser requests.',
         '**HTTP 401 Unauthorized**: The `Authorization: Bearer <TOKEN>` header is missing, malformed, or invalid. Verify and regenerate your token on [https://modelscope.ai/my/myaccesstoken](https://modelscope.ai/my/myaccesstoken).',
         '**HTTP 429 Too Many Requests**: You reached the daily limit (~500 calls for that specific model or ~2,000 daily overall). Switch to another model ID or wait for the 00:00 UTC+8 daily reset.',
-        '**Cubes vs API Quota Exhaustion**: Running out of Magic Cubes only restricts GPU-heavy tasks (like fine-tuning and media generation). Your 2,000 free API inference calls continue to function normally.',
+        '**Magicubes vs API Quota Exhaustion**: Running out of Magicubes only restricts GPU-heavy tasks (like fine-tuning and media generation). Your 2,000 free API inference calls continue to function normally.',
         '**Connection Timeouts**: When accessing the inference gateway internationally, ensure client HTTP timeouts are set to at least 90 seconds to prevent premature disconnections during cold starts.',
       ],
     },
