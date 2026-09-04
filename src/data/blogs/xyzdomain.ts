@@ -18,7 +18,7 @@ export const xyzdomainBlog: BlogPost = {
     type: 'info',
     title: 'Promotional Registration Notice',
     content:
-      'Promotional codes grant a 100% discount for a 1-year registration of standard .xyz domains ($15.00 domain + $1.00 WHOIS privacy). Most promo codes are strictly First-Come, First-Served (FCFS) with limited redemption quotas and can expire rapidly once claims are exhausted. Promo codes do not apply to premium tier domains or multi-year terms. ICANN email verification must be completed within 15 days of registration.',
+      'Promotional codes provide a 100% discount for a 1-year registration of standard .xyz domains ($15.00 domain + $1.00 WHOIS privacy). Codes have limited total redemptions and expire once the allocation is used up. They do not apply to premium domains or multi-year terms. You must also complete ICANN email verification within 15 days of registration.',
   },
   sections: [
     {
@@ -56,16 +56,16 @@ export const xyzdomainBlog: BlogPost = {
       id: 'checkout-promo',
       title: '3. Applying Promo Code & Zero-Cost Checkout',
       orderedList: [
-        '**Apply Promo Code**: In the "Promotional Code" input field, enter your promotional code and click "Apply Code". Because promo codes are strictly FCFS (First-Come, First-Served) with limited redemption allocations, claim yours promptly before available spots run out.',
+        '**Apply Promo Code**: In the "Promotional Code" box, enter your promo code and click "Apply Code". These codes have limited total redemptions, so apply them promptly once you have one.',
         '**Verify Zero-Dollar Total**: Confirm that the $16.00 discount applies, bringing the "Total Due" to **$0.00 USD**.',
         '**Select Paypal Payment Method (Important)**: In the "Default Payment Method" section, do NOT enter credit card numbers. Click the **Paypal** tab instead. Because the invoice balance is $0.00 USD, selecting Paypal allows order completion without entering credit card details or redirecting to PayPal.',
         '**Accept Terms & Submit**: Check the box for "I agree to the Domain Registration Terms & Conditions..." and click "Submit Order". Your domain order will be processed and assigned to your account immediately.',
       ],
       notice: {
         type: 'tip',
-        title: 'Zero-Dollar Checkout & FCFS Tip',
+        title: 'Zero-Dollar Checkout Tip',
         content:
-          'Selecting Paypal avoids saving credit card information on file while allowing zero-dollar promotional orders to finalize automatically. Note that promotional codes operate on a strict first-come, first-served basis; if a code fails to apply on an eligible 1-year domain, its redemption limit has likely been reached.',
+          'Selecting Paypal avoids saving a credit card on file while letting zero-dollar promotional orders finalize automatically. If a code fails to apply on an eligible 1-year domain, its redemption quota has likely been reached.',
       },
     },
     {
@@ -124,7 +124,7 @@ export const xyzdomainBlog: BlogPost = {
       title: '6. Troubleshooting & FAQs',
       lead: 'Common issues and solutions encountered during promotional registration and domain configuration:',
       unorderedList: [
-        '**Promo Code Rejected / Expired**: Promo codes operate on a strict First-Come, First-Served (FCFS) basis and expire once all allocation spots are claimed. Also verify that the term length is set strictly to "1 Year" and the domain is a standard $15.00 USD tier (premium domains and multi-year terms are ineligible).',
+        '**Promo Code Rejected / Expired**: Promo codes have a limited redemption cap and expire once claimed. Also verify that the registration term is set strictly to "1 Year" and the domain is in the standard $15.00 tier (premium domains and multi-year terms are ineligible).',
         '**Order Flagged for Fraud**: Automated risk filters may occasionally flag new accounts or registrations. If your order is placed on review, send an email to `support@gen.xyz` detailing the issue to request manual approval.',
         '**Domain Suspended**: Caused by uncompleted ICANN email verification within 15 days. Check your spam folder for the verification link or request a resend from the client area.',
         '**DNS Propagation Delays**: DNS record changes or initial website publishing can take up to 24 hours to resolve globally across all ISP resolvers.',

@@ -20,9 +20,9 @@ export const agentrouterBlog: BlogPost = {
       title: '1. Account Registration & Claiming Credits',
       orderedList: [
         'Registration: Sign up using the referral invitation link [https://agentrouter.org/register?aff=EZ5v](https://agentrouter.org/register?aff=EZ5v) to receive the full $175 initial credits and grant $50 in bonus credits to both accounts.',
-        'GitHub Account Requirements: Sign in with a GitHub account that is at least 6 months old with adequate content and activity. Empty accounts, alt accounts, or newly created profiles are automatically flagged and blocked by anti-bot fraud filters (while exact algorithmic criteria remain undisclosed, established and lightly active accounts pass through without issue).',
-        'Initial Balance: Once authenticated, your $175 balance is instantly credited to your dashboard wallet.',
-        'Daily Bonus Synchronization: Daily credits ($25/day) are NEVER applied automatically. You must always log out and log back into your account each day to trigger token synchronization and claim the bonus.',
+        'GitHub Account Requirements: Sign in with a GitHub account that is at least 6 months old with normal commit activity. Blank profiles or freshly created accounts are rejected by anti-bot filters, but standard active accounts pass without issue.',
+        'Initial Balance: Once authenticated, your $175 balance is immediately credited to your dashboard wallet.',
+        'Daily Bonus Refresh: Daily credits ($25/day) do not credit automatically in the background. You must log out and log back into your account each day to trigger the balance refresh.',
         'Generate API Token: Go to [Console > API Tokens](https://agentrouter.org/console/token) and click "Add Token". Provide a name, select "Never expires", toggle "Unlimited quota" (or custom limits), and copy your `sk-...` API key.',
       ],
       actionButton: {
@@ -33,7 +33,7 @@ export const agentrouterBlog: BlogPost = {
         type: 'info',
         title: 'Free Credits & Daily Bonus Notice',
         content:
-          'New eligible accounts receive $175 upon registration. Signing up through this referral link also grants a $50 bonus, along with a $25 credit awarded for daily logins. Note that daily credits do not apply automatically; you must log out and log back in each day to trigger the daily quota synchronization.',
+          'Eligible accounts receive $175 upon registration. Using this referral link adds an extra $50 bonus, plus $25 for daily logins. Note that daily credits do not apply automatically; you must log out and log back in each day to refresh your balance.',
       },
     },
     {
@@ -416,7 +416,7 @@ export const agentrouterBlog: BlogPost = {
       title: '4. Troubleshooting & Best Practices',
       lead: 'Common solutions for CLI configuration, account verification, and credit synchronization:',
       unorderedList: [
-        '**Daily Credits Synchronization**: Daily credits ($25/day) do not apply automatically. Always log out of agentrouter.org and log back in each day to refresh your session and claim the daily reward.',
+        '**Daily Credits Not Refreshing**: Daily credits ($25/day) do not apply automatically. Log out of agentrouter.org and log back in each day to refresh your balance.',
         '**Account Verification Criteria**: If initial credits fail to appear, verify that your GitHub account is at least 6 months old with active commit history. Blank alts and newly created accounts are rejected by anti-fraud filters.',
         '**Anthropic vs OpenAI Base URL**: For Anthropic clients (Claude Code), use `https://agentrouter.org` without `/v1`. For OpenAI-compatible tools (Codex, OpenCode, Cline, Cursor), use `https://agentrouter.org/v1`.',
         '**Token Permissions**: In [Console > API Tokens](https://agentrouter.org/console/token), confirm your token is assigned to the `default` group with all models active and "Never expires" enabled.',

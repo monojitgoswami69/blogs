@@ -27,6 +27,11 @@ export interface ClientGuide {
   id: string;
   title: string;
   lead?: string;
+  notice?: {
+    type: 'info' | 'warning' | 'tip';
+    title?: string;
+    content: string;
+  };
   collapsiblePrerequisites?: {
     title: string;
     content?: string;

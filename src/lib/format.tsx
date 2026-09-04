@@ -10,9 +10,10 @@ export function renderFormattedText(text: string): React.ReactNode {
   // Token pattern matching:
   // 1. Markdown link: [text](url)
   // 2. Bold: **text**
-  // 3. Inline code: `code`
-  // 4. Raw URLs: https?://[^\s)"]+
-  const tokenPattern = /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|https?:\/\/[^\s)"]+)/g;
+  // 3. Italics: *text*
+  // 4. Inline code: `code`
+  // 5. Raw URLs: https?://[^\s)"]+
+  const tokenPattern = /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|https?:\/\/[^\s)"]+)/g;
   const parts = text.split(tokenPattern);
 
   return parts.map((part, index) => {
@@ -42,6 +43,12 @@ export function renderFormattedText(text: string): React.ReactNode {
     if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
       const inner = part.slice(2, -2);
       return <strong key={index} className="font-semibold text-[#111111]">{inner}</strong>;
+    }
+
+    // 2b. Italic text: *text*
+    if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+      const inner = part.slice(1, -1);
+      return <em key={index} className="italic text-[#333333]">{inner}</em>;
     }
 
     // 3. Inline code: `code`

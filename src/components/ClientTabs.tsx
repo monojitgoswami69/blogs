@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ClientGuide } from '../types/blog';
 import { PlatformTabs } from './PlatformTabs';
 import { Collapsible } from './Collapsible';
+import { Notice } from './Notice';
 import { renderFormattedText } from '../lib/format';
 
 interface ClientTabsProps {
@@ -39,6 +40,12 @@ export function ClientTabs({ guides }: ClientTabsProps) {
       <div className="client-guide-panel" role="tabpanel">
         {activeGuide.lead && (
           <p className="client-lead-text">{renderFormattedText(activeGuide.lead)}</p>
+        )}
+
+        {activeGuide.notice && (
+          <Notice type={activeGuide.notice.type} title={activeGuide.notice.title}>
+            <p style={{ margin: 0 }}>{renderFormattedText(activeGuide.notice.content)}</p>
+          </Notice>
         )}
 
         {activeGuide.collapsiblePrerequisites && (
