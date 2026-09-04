@@ -90,12 +90,12 @@ export const modelscopeBlog: BlogPost = {
           title: 'OpenCode CLI (Recommended)',
           lead: 'Route coding agent sessions through ModelScope models using its OpenAI-compatible endpoint. OpenCode is the recommended harness because it handles intermittent server errors with automatic retries.',
           collapsiblePrerequisites: {
-            title: 'Prerequisites: OpenCode CLI Installation',
-            content: 'Ensure OpenCode is installed on your system:',
-            code: 'opencode --version',
+            title: 'Prerequisites: Node.js / CLI Tooling',
+            content: 'Node.js 18 or newer is required to install the OpenCode CLI.',
+            code: 'node --version',
             list: [
-              'Install globally via npm: `npm install -g opencode`',
-              'Or install via Homebrew (macOS): `brew install opencode`',
+              'Install globally via npm: `npm install -g opencode-ai`',
+              'Or install via shell script: `curl -fsSL https://opencode.ai/install.sh | bash`',
             ],
           },
           platforms: [
@@ -104,45 +104,56 @@ export const modelscopeBlog: BlogPost = {
               label: 'macOS / Linux',
               steps: [
                 {
-                  title: 'Step 1: Configure Shell Profile',
-                  description:
-                    'Add the ModelScope endpoint and token to your shell configuration (`~/.zshrc` or `~/.bashrc`):',
-                  command: `echo 'export OPENAI_BASE_URL="https://api-inference.modelscope.ai/v1"' >> ~/.zshrc
-echo 'export OPENAI_API_KEY="ms-YOUR_MODELSCOPE_TOKEN"' >> ~/.zshrc
-source ~/.zshrc`,
+                  title: 'Step 1: Install OpenCode CLI',
+                  description: 'Install globally via npm or official install script:',
+                  command: 'npm install -g opencode-ai',
+                  collapsible: {
+                    title: 'Alternative: Shell Install Script',
+                    content: 'Install via curl:',
+                    code: 'curl -fsSL https://opencode.ai/install.sh | bash',
+                  },
                 },
                 {
-                  title: 'Step 2: Define Provider in Config',
+                  title: 'Step 2: Configure Provider in opencode.json',
                   description:
-                    'Create or edit `~/.config/opencode/config.json` with your ModelScope model configurations:',
+                    'Create `~/.config/opencode/opencode.json` (or place `opencode.json` in your project root) with the model configuration below:',
+                  command: 'mkdir -p ~/.config/opencode && nano ~/.config/opencode/opencode.json',
                   code: {
-                    filename: '~/.config/opencode/config.json',
-                    language: 'json',
+                    filename: '~/.config/opencode/opencode.json',
                     content: JSON.stringify(
                       {
-                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
-                        providers: {
+                        $schema: 'https://opencode.ai/config.json',
+                        provider: {
                           modelscope: {
+                            name: 'ModelScope',
                             baseURL: 'https://api-inference.modelscope.ai/v1',
-                            apiKey: '${OPENAI_API_KEY}',
-                            models: [
-                              'deepseek-ai/DeepSeek-V4-Pro-0813',
-                              'zai-org/GLM-5.2',
-                              'Qwen/Qwen3-Coder-30B-A3B-Instruct',
-                            ],
+                            models: {
+                              'deepseek-ai/DeepSeek-V4-Pro-0813': {
+                                name: 'DeepSeek V4 Pro',
+                              },
+                              'zai-org/GLM-5.2': {
+                                name: 'GLM 5.2',
+                              },
+                              'Qwen/Qwen3-Coder-30B-A3B-Instruct': {
+                                name: 'Qwen 3 Coder 30B',
+                              },
+                            },
                           },
                         },
-                        defaultProvider: 'modelscope',
+                        model: 'modelscope/deepseek-ai/DeepSeek-V4-Pro-0813',
                       },
                       null,
                       2
                     ),
                   },
+                  note: 'The API key is not stored in opencode.json. It will be configured interactively in Step 3.',
                 },
                 {
-                  title: 'Step 3: Launch OpenCode Session',
-                  description: 'Start an agent session specifying DeepSeek-V4 Pro:',
-                  command: 'opencode --model deepseek-ai/DeepSeek-V4-Pro-0813',
+                  title: 'Step 3: Connect API Key via /connect',
+                  description:
+                    'Start OpenCode in your project workspace, run the `/connect` command, enter `modelscope` as the provider ID, and paste your `ms-...` API key:',
+                  command: 'cd your-project-folder\nopencode',
+                  note: 'Inside OpenCode terminal session, run: /connect -> enter provider ID "modelscope" -> paste your API key.',
                 },
               ],
             },
@@ -151,42 +162,51 @@ source ~/.zshrc`,
               label: 'Windows',
               steps: [
                 {
-                  title: 'Step 1: Set Persistent Environment Variables',
-                  description: 'Execute in PowerShell as user:',
-                  command: `[System.Environment]::SetEnvironmentVariable('OPENAI_BASE_URL', 'https://api-inference.modelscope.ai/v1', 'User')
-[System.Environment]::SetEnvironmentVariable('OPENAI_API_KEY', 'ms-YOUR_MODELSCOPE_TOKEN', 'User')`,
+                  title: 'Step 1: Install OpenCode CLI',
+                  description: 'Install globally via npm in PowerShell or Command Prompt:',
+                  command: 'npm install -g opencode-ai',
                 },
                 {
-                  title: 'Step 2: Configure OpenCode Settings File',
-                  description: 'Open `%USERPROFILE%\\.config\\opencode\\config.json` and paste:',
+                  title: 'Step 2: Configure Provider in opencode.json',
+                  description:
+                    'Create `opencode.json` under `%USERPROFILE%\\.config\\opencode\\opencode.json` (or in project root):',
+                  command: 'mkdir ~\\.config\\opencode\nnotepad ~\\.config\\opencode\\opencode.json',
                   code: {
-                    filename: '%USERPROFILE%\\.config\\opencode\\config.json',
-                    language: 'json',
+                    filename: 'opencode.json',
                     content: JSON.stringify(
                       {
-                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
-                        providers: {
+                        $schema: 'https://opencode.ai/config.json',
+                        provider: {
                           modelscope: {
+                            name: 'ModelScope',
                             baseURL: 'https://api-inference.modelscope.ai/v1',
-                            apiKey: '${OPENAI_API_KEY}',
-                            models: [
-                              'deepseek-ai/DeepSeek-V4-Pro-0813',
-                              'zai-org/GLM-5.2',
-                              'Qwen/Qwen3-Coder-30B-A3B-Instruct',
-                            ],
+                            models: {
+                              'deepseek-ai/DeepSeek-V4-Pro-0813': {
+                                name: 'DeepSeek V4 Pro',
+                              },
+                              'zai-org/GLM-5.2': {
+                                name: 'GLM 5.2',
+                              },
+                              'Qwen/Qwen3-Coder-30B-A3B-Instruct': {
+                                name: 'Qwen 3 Coder 30B',
+                              },
+                            },
                           },
                         },
-                        defaultProvider: 'modelscope',
+                        model: 'modelscope/deepseek-ai/DeepSeek-V4-Pro-0813',
                       },
                       null,
                       2
                     ),
                   },
+                  note: 'Ensure the file is saved as opencode.json without a hidden .txt extension.',
                 },
                 {
-                  title: 'Step 3: Launch OpenCode Session',
-                  description: 'Open a fresh PowerShell window and start OpenCode:',
-                  command: 'opencode --model deepseek-ai/DeepSeek-V4-Pro-0813',
+                  title: 'Step 3: Connect API Key via /connect',
+                  description:
+                    'Launch OpenCode in your project workspace, run `/connect`, enter `modelscope`, and input your `ms-...` API key:',
+                  command: 'cd your-project-folder\nopencode',
+                  note: 'Inside OpenCode terminal session, run: /connect -> enter provider ID "modelscope" -> paste your API key.',
                 },
               ],
             },
@@ -194,14 +214,16 @@ source ~/.zshrc`,
         },
         {
           id: 'codex',
-          title: 'OpenAI Codex CLI',
-          lead: 'Route the official @openai/codex CLI tool through ModelScope endpoints.',
+          title: 'OpenAI Codex',
+          lead: 'Official @openai/codex CLI configured to route through the ModelScope OpenAI-compatible API gateway.',
           collapsiblePrerequisites: {
-            title: 'Prerequisites: Node.js 18+',
-            content: 'Verify Node.js runtime availability:',
+            title: 'Prerequisites: Node.js (Optional)',
+            content: 'Node.js 18 or newer is required to install the official Codex package.',
             code: 'node --version',
             list: [
-              'Install Codex globally: `npm install -g @openai/codex`',
+              'macOS (Homebrew): `brew install node`',
+              'Windows: Download LTS installer from nodejs.org',
+              'Linux (Debian/Ubuntu): `curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs`',
             ],
           },
           platforms: [
@@ -210,12 +232,26 @@ source ~/.zshrc`,
               label: 'macOS / Linux',
               steps: [
                 {
-                  title: 'Step 1: Configure ~/.codex/auth.json',
-                  description: 'Create the configuration directory and register your credentials:',
-                  command: 'mkdir -p ~/.codex',
+                  title: 'Step 1: Install Codex CLI',
+                  description: 'Install globally via npm or Homebrew:',
+                  command: 'npm install -g @openai/codex',
+                  collapsible: {
+                    title: 'Alternative: Homebrew Installation (macOS)',
+                    content: 'If you prefer Homebrew:',
+                    code: 'brew install codex',
+                  },
+                },
+                {
+                  title: 'Step 2: Setup Configuration Directory',
+                  description: 'Clear any previous configuration and initialize the directory:',
+                  command: 'rm -rf ~/.codex && mkdir ~/.codex',
+                },
+                {
+                  title: 'Step 3: Configure Authentication',
+                  description: 'Open `~/.codex/auth.json` in a text editor (replace with your ModelScope token):',
+                  command: 'nano ~/.codex/auth.json',
                   code: {
                     filename: '~/.codex/auth.json',
-                    language: 'json',
                     content: JSON.stringify(
                       {
                         OPENAI_API_KEY: 'ms-YOUR_MODELSCOPE_TOKEN',
@@ -226,26 +262,18 @@ source ~/.zshrc`,
                   },
                 },
                 {
-                  title: 'Step 2: Configure Base URL and Model',
-                  description: 'Create `~/.codex/config.json` routing requests to ModelScope:',
+                  title: 'Step 4: Configure Provider',
+                  description: 'Create and save `~/.codex/config.toml` with the ModelScope provider parameters below:',
+                  command: 'nano ~/.codex/config.toml',
                   code: {
-                    filename: '~/.codex/config.json',
-                    language: 'json',
-                    content: JSON.stringify(
-                      {
-                        baseURL: 'https://api-inference.modelscope.ai/v1',
-                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
-                        temperature: 0.2,
-                      },
-                      null,
-                      2
-                    ),
+                    filename: '~/.codex/config.toml',
+                    content: `model_provider = "modelscope"\nmodel = "deepseek-ai/DeepSeek-V4-Pro-0813"\nmodel_reasoning_effort = "xhigh"\ndisable_response_storage = true\npreferred_auth_method = "apikey"\n\n[model_providers.modelscope]\nname = "modelscope"\nbase_url = "https://api-inference.modelscope.ai/v1"\nwire_api = "responses"`,
                   },
                 },
                 {
-                  title: 'Step 3: Run Codex Command',
-                  description: 'Run Codex against your local workspace:',
-                  command: 'codex "Implement a token bucket rate limiter in Go"',
+                  title: 'Step 5: Verify & Launch',
+                  description: 'Restart your terminal to reload environment variables, verify the version, and launch:',
+                  command: 'codex -V\ncd your-project-folder\ncodex',
                 },
               ],
             },
@@ -254,21 +282,24 @@ source ~/.zshrc`,
               label: 'Windows',
               steps: [
                 {
-                  title: 'Step 1: Create Config Folder',
-                  description: 'In PowerShell, initialize the `.codex` folder in your home directory:',
-                  command: 'New-Item -ItemType Directory -Force -Path "$HOME\\.codex"',
+                  title: 'Step 1: Install Codex CLI',
+                  description: 'Run in PowerShell or Command Prompt:',
+                  command: 'npm install -g @openai/codex',
                 },
                 {
-                  title: 'Step 2: Configure Settings File',
-                  description: 'Create `$HOME\\.codex\\config.json` with the ModelScope gateway settings:',
+                  title: 'Step 2: Setup Configuration Directory',
+                  description: 'In PowerShell, recreate the configuration folder:',
+                  command: 'Remove-Item -Recurse -Force ~\\.codex -ErrorAction SilentlyContinue\nNew-Item -ItemType Directory ~\\.codex',
+                },
+                {
+                  title: 'Step 3: Configure Authentication',
+                  description: 'Create and save `auth.json` (replace with your ModelScope token):',
+                  command: 'notepad ~\\.codex\\auth.json',
                   code: {
-                    filename: '$HOME\\.codex\\config.json',
-                    language: 'json',
+                    filename: 'auth.json',
                     content: JSON.stringify(
                       {
-                        baseURL: 'https://api-inference.modelscope.ai/v1',
-                        model: 'deepseek-ai/DeepSeek-V4-Pro-0813',
-                        temperature: 0.2,
+                        OPENAI_API_KEY: 'ms-YOUR_MODELSCOPE_TOKEN',
                       },
                       null,
                       2
@@ -276,9 +307,19 @@ source ~/.zshrc`,
                   },
                 },
                 {
-                  title: 'Step 3: Run Codex Query',
-                  description: 'Execute your query in PowerShell:',
-                  command: 'codex "Create a PowerShell script to audit directory disk usage"',
+                  title: 'Step 4: Configure Provider',
+                  description: 'Create and save `config.toml`:',
+                  command: 'notepad ~\\.codex\\config.toml',
+                  code: {
+                    filename: 'config.toml',
+                    content: `model_provider = "modelscope"\nmodel = "deepseek-ai/DeepSeek-V4-Pro-0813"\nmodel_reasoning_effort = "xhigh"\ndisable_response_storage = true\npreferred_auth_method = "apikey"\n\n[model_providers.modelscope]\nname = "modelscope"\nbase_url = "https://api-inference.modelscope.ai/v1"\nwire_api = "responses"`,
+                  },
+                  note: 'Ensure Windows Notepad does not add a hidden .txt extension to config.toml.',
+                },
+                {
+                  title: 'Step 5: Verify & Launch',
+                  description: 'Restart terminal, verify, and run:',
+                  command: 'codex -V\ncd your-project-folder\ncodex',
                 },
               ],
             },
@@ -295,12 +336,13 @@ source ~/.zshrc`,
               'ModelScope\'s Anthropic-compatible gateway is currently in **beta** and experiences occasional upstream disconnects. Because Claude Code does not automatically retry network errors, sessions can drop abruptly. If you hit frequent disconnects, use **OpenCode CLI** instead, which retries failed requests automatically.',
           },
           collapsiblePrerequisites: {
-            title: 'Prerequisites: Claude Code CLI Installation',
-            content: 'Verify Claude Code is installed globally on your system:',
-            code: 'claude --version',
+            title: 'Prerequisites: Node.js (Optional)',
+            content: 'If installing via npm, Node.js 18 or newer is required.',
+            code: 'node --version',
             list: [
-              'Install globally via npm: `npm install -g @anthropic-ai/claude-code`',
-              'Node.js 18+ runtime is required',
+              'macOS (Homebrew): `brew install node`',
+              'Windows: Download LTS installer from nodejs.org',
+              'Linux (Debian/Ubuntu): `curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs`',
             ],
           },
           platforms: [
@@ -309,18 +351,45 @@ source ~/.zshrc`,
               label: 'macOS / Linux',
               steps: [
                 {
-                  title: 'Step 1: Configure Environment Variables',
-                  description:
-                    'Direct Claude Code to the ModelScope native Anthropic gateway by adding these exports to your `~/.zshrc` or `~/.bashrc`:',
-                  command: `echo 'export ANTHROPIC_BASE_URL="https://api-inference.modelscope.ai"' >> ~/.zshrc
-echo 'export ANTHROPIC_API_KEY="ms-YOUR_MODELSCOPE_TOKEN"' >> ~/.zshrc
-echo 'export ANTHROPIC_MODEL="deepseek-ai/DeepSeek-V4-Pro-0813"' >> ~/.zshrc
-source ~/.zshrc`,
+                  title: 'Step 1: Install the CLI',
+                  description: 'Install using the official script or npm:',
+                  command: 'curl -fsSL https://claude.ai/install.sh | bash',
+                  collapsible: {
+                    title: 'Alternative: NPM Global Install',
+                    content: 'If you have Node 18+ and prefer npm:',
+                    code: 'npm install -g @anthropic-ai/claude-code',
+                  },
                 },
                 {
-                  title: 'Step 2: Launch Claude Code',
+                  title: 'Step 2: Configure Client',
                   description:
-                    'Run Claude Code directly in your project repository. It communicates straight with ModelScope via the native Anthropic Messages API:',
+                    'Edit `~/.claude/settings.json` to point to ModelScope (replace with your ModelScope token):',
+                  command: 'mkdir -p ~/.claude && nano ~/.claude/settings.json',
+                  code: {
+                    filename: '~/.claude/settings.json',
+                    content: JSON.stringify(
+                      {
+                        env: {
+                          ANTHROPIC_API_KEY: 'ms-YOUR_MODELSCOPE_TOKEN',
+                          ANTHROPIC_BASE_URL: 'https://api-inference.modelscope.ai',
+                          ANTHROPIC_MODEL: 'deepseek-ai/DeepSeek-V4-Pro-0813',
+                          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1',
+                        },
+                        permissions: {
+                          allow: [],
+                          deny: [],
+                        },
+                        apiKeyHelper: "echo 'ms-YOUR_MODELSCOPE_TOKEN'",
+                      },
+                      null,
+                      2
+                    ),
+                  },
+                  note: 'Important: Do NOT append /v1 to ANTHROPIC_BASE_URL for Claude Code.',
+                },
+                {
+                  title: 'Step 3: Launch',
+                  description: 'Restart your terminal and launch Claude Code in your project directory:',
                   command: 'claude',
                 },
               ],
@@ -330,15 +399,39 @@ source ~/.zshrc`,
               label: 'Windows',
               steps: [
                 {
-                  title: 'Step 1: Set Persistent Environment Variables',
-                  description: 'Execute in PowerShell as user to configure your Anthropic gateway variables:',
-                  command: `[System.Environment]::SetEnvironmentVariable('ANTHROPIC_BASE_URL', 'https://api-inference.modelscope.ai', 'User')
-[System.Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', 'ms-YOUR_MODELSCOPE_TOKEN', 'User')
-[System.Environment]::SetEnvironmentVariable('ANTHROPIC_MODEL', 'deepseek-ai/DeepSeek-V4-Pro-0813', 'User')`,
+                  title: 'Step 1: Install the CLI',
+                  description: 'Run in PowerShell or Git Bash (Git Bash recommended for path compatibility):',
+                  command: 'npm install -g @anthropic-ai/claude-code',
                 },
                 {
-                  title: 'Step 2: Launch Claude Code',
-                  description: 'Open a fresh PowerShell window and start Claude Code:',
+                  title: 'Step 2: Configure Client',
+                  description: 'Create `C:\\Users\\<username>\\.claude\\settings.json`:',
+                  command: 'mkdir ~\\.claude\nnotepad ~\\.claude\\settings.json',
+                  code: {
+                    filename: 'settings.json',
+                    content: JSON.stringify(
+                      {
+                        env: {
+                          ANTHROPIC_API_KEY: 'ms-YOUR_MODELSCOPE_TOKEN',
+                          ANTHROPIC_BASE_URL: 'https://api-inference.modelscope.ai',
+                          ANTHROPIC_MODEL: 'deepseek-ai/DeepSeek-V4-Pro-0813',
+                          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1',
+                        },
+                        permissions: {
+                          allow: [],
+                          deny: [],
+                        },
+                        apiKeyHelper: "echo 'ms-YOUR_MODELSCOPE_TOKEN'",
+                      },
+                      null,
+                      2
+                    ),
+                  },
+                  note: 'Replace both occurrences of ms-YOUR_MODELSCOPE_TOKEN with your secret key.',
+                },
+                {
+                  title: 'Step 3: Launch',
+                  description: 'Restart terminal and run:',
                   command: 'claude',
                 },
               ],
